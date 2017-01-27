@@ -1,16 +1,19 @@
 require 'FileUtils'
 
-def single_photo_transfer
-  FileUtils.copy_file('/Volumes/Untitled/test/photo3.JPG', '/Users/rory/Documents/tester/photo3.JPG', preserve = false, dereference = true)
-end
-
 def get_file_names(dir)
   FileUtils.cd(dir)
   file_name_array = Dir.glob("*")
 end
 
-def print_file_names(dir)
-  puts get_file_names(dir)
+def single_photo_transfer(copy_from, copy_to)
+  FileUtils.copy_file(copy_from, copy_to, preserve = false, dereference = true)
 end
 
-print_file_names('/Users/rory/Documents/tester')
+def copy_all_photos
+  photo_list = get_file_names("/Volumes/Untitled/test")
+  photo_list.each do |x|
+    single_photo_transfer("/Volumes/Untitled/test/#{x}", "/Users/rory/Documents/tester/#{x}")
+  end
+end
+
+copy_all_photos
