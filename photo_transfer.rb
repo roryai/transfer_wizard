@@ -1,5 +1,7 @@
+require 'FileUtils'
+
 def single_photo_transfer
-  File.rename /Volumes/Untitled/test/photo1.JPG, /Volumes/Untitled/test/photo1.JPG /Users/rory/Documents/Photo\ test
+  FileUtils.move '/Volumes/Untitled/test/photo2.JPG', '/Users/rory/Documents/tester'
 end
 
 single_photo_transfer
