@@ -1,12 +1,15 @@
 require 'FileUtils'
+require 'exifr'
 
-camera_dir = "/Volumes/Untitled/test/"
-computer_dir = "/Users/rory/Documents/tester/"
+@camera_dir = "/Volumes/Untitled/test/"
+@computer_dir = "/Users/rory/Documents/tester/"
 
 def get_file_names(dir)
   FileUtils.cd(dir)
   file_name_array = Dir.glob("*")
 end
+
+@file_name_array = get_file_names(@camera_dir)
 
 def single_photo_transfer(copy_from, copy_to)
   FileUtils.copy_file(copy_from, copy_to, preserve = false, dereference = true)
@@ -19,9 +22,9 @@ def copy_all_photos(camera_dir, computer_dir)
   end
 end
 
-def make_directory(dir)
-  FileUtils.cd(dir)
-  FileUtils.mkdir(folder_name_by_date)
+def make_directory(dir_to_make_within, dir_to_make)
+  FileUtils.cd(dir_to_make_within)
+  FileUtils.mkdir(dir_to_make)
 end
 
 def folder_name_by_date
@@ -29,5 +32,17 @@ def folder_name_by_date
   t.year.to_s + "-" + t.month.to_s + "-" + t.day.to_s
 end
 
-make_directory("/Users/rory/Documents/tester/")
-copy_all_photos(camera_dir, computer_dir)
+def folder_name_from_metadata
+  EXIFR::JPEG.new('IMG_6841.JPG').date_time
+end
+
+
+def test_metadata
+  @file_name_array.each do |x|
+    p EXIFR::JPEG.new(x).date_time
+  end
+end
+
+# make_directory(computer_dir, folder_name_by_date)
+# copy_all_photos(camera_dir, computer_dir)
+test_metadata
