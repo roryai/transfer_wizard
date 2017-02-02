@@ -27,22 +27,16 @@ def make_directory(dir_to_make_within, dir_to_make)
   FileUtils.mkdir(dir_to_make)
 end
 
-def folder_name_by_date
-  t = Time.now
-  t.year.to_s + "-" + t.month.to_s + "-" + t.day.to_s
+def folder_name(time)
+  time.year.to_s + "-" + time.month.to_s + "-" + time.day.to_s
 end
 
 def folder_name_from_metadata
-  EXIFR::JPEG.new('IMG_6841.JPG').date_time
-end
-
-
-def test_metadata
   @file_name_array.each do |x|
-    p EXIFR::JPEG.new(x).date_time
+    make_directory(@computer_dir, folder_name(EXIFR::JPEG.new(x).date_time))
   end
 end
 
 # make_directory(computer_dir, folder_name_by_date)
 # copy_all_photos(camera_dir, computer_dir)
-test_metadata
+folder_name_from_metadata
