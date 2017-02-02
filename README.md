@@ -22,7 +22,7 @@ I want to delete photos from my SD card once they have been transferred
 
 As a user
 So that I don't accidentally lose my photos
-I want to  confirm that photos have been transferred before I delete them
+I want to confirm that photos have been transferred before I delete them
 
 As a user
 For ease of use

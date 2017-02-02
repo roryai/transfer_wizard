@@ -19,4 +19,15 @@ def copy_all_photos(camera_dir, computer_dir)
   end
 end
 
+def make_directory(dir)
+  FileUtils.cd(dir)
+  FileUtils.mkdir(folder_name_by_date)
+end
+
+def folder_name_by_date
+  t = Time.now
+  t.year.to_s + "-" + t.month.to_s + "-" + t.day.to_s
+end
+
+make_directory("/Users/rory/Documents/tester/")
 copy_all_photos(camera_dir, computer_dir)
