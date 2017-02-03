@@ -32,11 +32,24 @@ def folder_name(time)
 end
 
 def folder_name_from_metadata
-  @file_name_array.each do |x|
-    make_directory(@computer_dir, folder_name(EXIFR::JPEG.new(x).date_time))
+  arr = get_exifr_time_array(get_file_names(@camera_dir))
+  arr.each do |x|
+    make_directory(@computer_dir, folder_name(x)) unless File.exist?(folder_name(x))
   end
+  arr
+end
+
+
+def get_exifr_time_array(file_names)
+  arr = []
+  file_names.each do |x|
+    arr << EXIFR::JPEG.new(x).date_time
+  end
+  arr
 end
 
 # make_directory(computer_dir, folder_name_by_date)
 # copy_all_photos(camera_dir, computer_dir)
 folder_name_from_metadata
+
+# get_exifr_time_array(get_file_names(@camera_dir))
