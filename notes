@@ -2,3 +2,8 @@ File transfer process:
 
 get list of file names on sd card and store in an array
 pass array to method that interpolates the file name into a string of which file to be copied.
+
+get file name and date taken
+if directory for that date doesn't exist, create it
+once created, or if it already exists, move the photo to that file
+repeat
