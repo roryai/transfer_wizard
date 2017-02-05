@@ -1,4 +1,11 @@
-class FileManager
+require 'FileUtils'
+require 'exifr'
+require_relative 'directory_manager.rb'
+require_relative 'photo_transfer.rb'
+
+module FileMgr
+
+  # extend DirMgr
 
   def get_file_names(dir)
     FileUtils.cd(dir)

@@ -1,8 +1,11 @@
-class DirectoryManager
+require 'FileUtils'
+require 'exifr'
+require_relative 'file_manager.rb'
+require_relative 'photo_transfer.rb'
 
-  def initialize
+module DirMgr
 
-  end
+  # extend FileMgr
 
   def make_directory(dir_to_make_within, dir_to_make)
     FileUtils.cd(dir_to_make_within)
@@ -14,9 +17,9 @@ class DirectoryManager
   end
 
   def create_dir_by_date_taken
-    arr = get_exifr_time_array(get_file_names(CAMERA_DIR))
+    arr = get_exifr_time_array(get_file_names(@camera_dir))
     arr.each do |x|
-      make_directory(COMPUTER_DIR, folder_name(x)) unless File.exist?(folder_name(x))
+      make_directory(@computer_dir, folder_name(x)) unless File.exist?(folder_name(x))
     end
     arr
   end

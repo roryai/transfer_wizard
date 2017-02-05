@@ -5,13 +5,15 @@ require_relative 'file_manager.rb'
 
 class Transfer
 
-  CAMERA_DIR = "/Volumes/Untitled/test/"
-  COMPUTER_DIR = "/Users/rory/Documents/tester/"
+  extend DirMgr
+  extend FileMgr
+
+  attr_reader :camera_dir, :computer_dir, :file_name_array
 
   def initialize
-    @file_mgr = FileManager.new
-    @dir_mgr = DirectoryManager.new
-    @file_name_array = @file_mgr.get_file_names(CAMERA_DIR)
+    @camera_dir = "/Volumes/Untitled/test/"
+    @computer_dir = "/Users/rory/Documents/tester/"
+    @file_name_array = Transfer.get_file_names(@camera_dir)
   end
 
   def single_photo_transfer(copy_from, copy_to)
@@ -28,6 +30,6 @@ class Transfer
 end
 # make_directory(computer_dir, folder_name_by_date)
 # copy_all_photos(camera_dir, computer_dir)
-create_dir_by_date_taken
+# create_dir_by_date_taken
 
 # get_exifr_time_array(get_file_names(CAMERA_DIR))
