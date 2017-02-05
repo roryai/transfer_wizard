@@ -7,3 +7,11 @@ get file name and date taken
 if directory for that date doesn't exist, create it
 once created, or if it already exists, move the photo to that file
 repeat
+
+make dated folders
+get date of each photo
+  look at file
+  check date
+  compare date to folder names
+  transfer file to correct folder
+put that file in the relevant folder

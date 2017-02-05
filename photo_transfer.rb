@@ -14,6 +14,7 @@ class Transfer
     @camera_dir = "/Volumes/Untitled/test/"
     @computer_dir = "/Users/rory/Documents/tester/"
     @file_name_array = Transfer.get_file_names(@camera_dir)
+    @exifr_time_array = Transfer.get_exifr_time_array(@camera_dir)
   end
 
   def single_photo_transfer(copy_from, copy_to)
@@ -21,15 +22,21 @@ class Transfer
   end
 
   def copy_all_photos(camera_dir, computer_dir)
-    photo_list = @file_mgr.get_file_names(camera_dir)
+    photo_list = Transfer.get_file_names(camera_dir)
     photo_list.each do |file_name|
       single_photo_transfer(camera_dir + "#{file_name}", computer_dir + "#{file_name}")
     end
   end
 
+  def transfer_photos_to_dated_directories
+    Transfer.create_dir_by_date_taken(@exifr_time_array, @computer_dir)
+
+  end
+
 end
-# make_directory(computer_dir, folder_name_by_date)
-# copy_all_photos(camera_dir, computer_dir)
-# create_dir_by_date_taken
+
+# copy_all_photos(@camera_dir, @computer_dir)
+
+# create_dir_by_date_taken(@exifr_time_array, @computer_dir)
 
 # get_exifr_time_array(get_file_names(CAMERA_DIR))
