@@ -1,7 +1,7 @@
 require 'FileUtils'
 require 'exifr'
-require_relative 'directory_manager.rb'
-require_relative 'photo_transfer.rb'
+# require_relative 'directory_manager.rb'
+# require_relative 'photo_transfer.rb'
 
 module FileMgr
 
@@ -12,18 +12,18 @@ module FileMgr
 
   def get_exifr_time_array(file_names)
     arr = []
-    arr.each do |x|
+    file_names.each do |x|
       arr << EXIFR::JPEG.new(x).date_time
     end
     arr
   end
 
   def get_name_time_array(arr)
-    final_arr = []
+    combined_arr = []
     arr.each do |x|
-      final_arr << [x, EXIFR::JPEG.new(x).date_time]
+      combined_arr << [x, EXIFR::JPEG.new(x).date_time]
     end
-    final_arr
+    combined_arr
   end
 
 end

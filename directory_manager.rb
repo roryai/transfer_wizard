@@ -1,7 +1,7 @@
 require 'FileUtils'
 require 'exifr'
-require_relative 'file_manager.rb'
-require_relative 'photo_transfer.rb'
+# require_relative 'file_manager.rb'
+# require_relative 'photo_transfer.rb'
 
 module DirMgr
 
