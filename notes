@@ -15,3 +15,5 @@ get date of each photo
   compare date to folder names
   transfer file to correct folder
 put that file in the relevant folder
+
+Next: add error handling for when files already exist

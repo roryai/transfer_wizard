@@ -22,27 +22,18 @@ class Transfer
   end
 
   def copy_all_photos(camera_dir, computer_dir)
-    photo_list = Transfer.get_file_names(camera_dir)
-    photo_list.each do |file_name|
+    @file_name_array.each do |file_name|
       single_photo_transfer(camera_dir + "#{file_name}", computer_dir + "#{file_name}")
     end
   end
 
   def transfer_photos_to_dated_directories
     Transfer.create_dir_by_date_taken(@exifr_time_array, @computer_dir)
-
     @file_name_time_array.each do |file_name, time|
-    dated_dir = @computer_dir + (Transfer.folder_name(time))
-    p dated_dir + file_name
-    FileUtils.cd(dated_dir)
-    single_photo_transfer(@camera_dir + file_name, dated_dir + file_name)
+      target_dir = @computer_dir + (Transfer.get_folder_name(time))
+      FileUtils.cd(target_dir)
+      single_photo_transfer(@camera_dir + "/" + file_name, target_dir + "/" + file_name)
     end
-
-  end
-
-  def folder
-  puts  Transfer.get_file_names(@camera_dir)
-
   end
 
 end
@@ -55,5 +46,3 @@ a.transfer_photos_to_dated_directories
 # create_dir_by_date_taken(@exifr_time_array, @computer_dir)
 
 # get_exifr_time_array(get_file_names(CAMERA_DIR))
-
-# inspect

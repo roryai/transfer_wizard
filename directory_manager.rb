@@ -1,7 +1,5 @@
 require 'FileUtils'
 require 'exifr'
-# require_relative 'file_manager.rb'
-# require_relative 'photo_transfer.rb'
 
 module DirMgr
 
@@ -10,17 +8,14 @@ module DirMgr
     FileUtils.mkdir(dir_to_make)
   end
 
-  def folder_name(time)
+  def get_folder_name(time)
     time.year.to_s + "-" + time.month.to_s + "-" + time.day.to_s
   end
 
   def create_dir_by_date_taken(times_array, computer_dir)
-    # does this need to return or even create arr?
-    arr = times_array
-    arr.each do |x|
-      make_directory(computer_dir, folder_name(x)) unless File.exist?(folder_name(x))
+    times_array.each do |x|
+      make_directory(computer_dir, get_folder_name(x)) unless File.exist?(get_folder_name(x))
     end
-    arr
   end
 
 end
