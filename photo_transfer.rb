@@ -4,17 +4,17 @@ require_relative 'directory_manager.rb'
 require_relative 'file_manager.rb'
 
 class Transfer
-
   extend DirMgr
   extend FileMgr
 
-  attr_reader :camera_dir, :computer_dir, :file_name_array
+  attr_reader :camera_dir, :computer_dir, :file_name_array, :exifr_time_array
 
   def initialize
     @camera_dir = "/Volumes/Untitled/test/"
     @computer_dir = "/Users/rory/Documents/tester/"
     @file_name_array = Transfer.get_file_names(@camera_dir)
     @exifr_time_array = Transfer.get_exifr_time_array(@camera_dir)
+    @name_time_array = Transfer.get_name_time_array(@file_name_array)
   end
 
   def single_photo_transfer(copy_from, copy_to)
@@ -40,3 +40,5 @@ end
 # create_dir_by_date_taken(@exifr_time_array, @computer_dir)
 
 # get_exifr_time_array(get_file_names(CAMERA_DIR))
+
+# inspect

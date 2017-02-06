@@ -15,6 +15,7 @@ module DirMgr
   end
 
   def create_dir_by_date_taken(times_array, computer_dir)
+    # does this need to return or even create arr?
     arr = times_array
     arr.each do |x|
       make_directory(computer_dir, folder_name(x)) unless File.exist?(folder_name(x))

@@ -18,4 +18,19 @@ module FileMgr
     arr
   end
 
+  def get_name_time_array(arr)
+    final_arr = []
+    arr.each do |x|
+      final_arr << [x, EXIFR::JPEG.new(x).date_time]
+    end
+    final_arr
+  end
+
 end
+
+# p x
+# temp_arr << x
+# p temp_arr
+# temp_arr << EXIFR::JPEG.new(x).date_time
+# p temp_arr
+# final_arr << temp_arr
