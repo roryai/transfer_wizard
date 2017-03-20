@@ -10,8 +10,8 @@ class Transfer
   attr_accessor :camera_dir, :computer_dir
 
   def initialize
-    @camera_dir ||= "/Users/rory/Desktop/test_camera"
-    @computer_dir ||= "/Users/rory/Desktop/tester/"
+    @camera_dir ||= "/Users/rory/Documents/legacy_photos"
+    @computer_dir ||= "/Users/rory/Documents/tester/"
     @file_name_time_array = Transfer.get_name_time_array(@camera_dir)
     @log = Log.new
     @rjust = 45
@@ -60,9 +60,6 @@ class Transfer
   end
 
   def transfer_photos_to_directories(day_or_month)
-    p @camera_dir
-    p @computer_dir
-    p @file_name_time_array
     Transfer.create_dir_by_day_or_month(@file_name_time_array, @computer_dir, day_or_month)
     multiple_photo_transfer(@camera_dir, @computer_dir, day_or_month)
     @log.counter_output(@file_name_time_array)

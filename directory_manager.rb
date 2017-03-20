@@ -18,7 +18,6 @@ module DirMgr
   end
 
   def create_dir_by_day_or_month(file_name_time_array, computer_dir, day_or_month)
-    p file_name_time_array
     file_name_time_array.each do |file_name, time|
       if day_or_month == "day"
         make_directory(computer_dir, folder_name_generator(day_or_month, time))

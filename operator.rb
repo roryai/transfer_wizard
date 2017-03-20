@@ -6,10 +6,11 @@ class Operator
     @transfer = Transfer.new
     @welcome_text = "Welcome to photo_transfer.
 
-    Type 'q' and 'enter', then to set the camera directory.
-    Type 'w' and 'enter' to set the directory for photos to be transferred to.
-    Type 'e' and 'enter' to see the camera directory.
-    Type 'r' and 'enter' to see the directory for photos to be transferred to.
+    Type 'q' and 'enter' to SET the camera directory.
+    Type 'w' and 'enter' to SET the directory for photos to be transferred to.
+    
+    Type 'e' and 'enter' to GET the camera directory.
+    Type 'r' and 'enter' to GET the directory for photos to be transferred to.
 
     Type 'd' and 'enter' to transfer all photos from your camera to folders on your computer according to the date taken.
     Type 'm' and 'enter' to transfer all photos from your camera to folders on your computer according to the month taken.
@@ -31,16 +32,20 @@ class Operator
     puts @welcome_text
     input = STDIN.gets.chomp
     case input
+
       when 'q'
         puts "Type the directory in the following format, then press enter:
         /Users/rory/Documents/test_camera/"
         @transfer.camera_dir = gets.chomp
         self.function_selector
+
       when 'w'
         puts "Type the directory in the following format, then press enter:
         /Users/rory/Documents/tester/"
         @transfer.computer_dir = gets.chomp
         self.function_selector
+
+
       when 'e'
         if @transfer.camera_dir == nil
           puts "\n" + "Camera directory set to default: /Users/rory/Documents/test_camera/\n\n"
@@ -48,6 +53,7 @@ class Operator
           puts "\n" + "Camera directory: " + @transfer.camera_dir + "\n\n"
         end
         self.function_selector
+
       when 'r'
         if @transfer.computer_dir == nil
           puts "\n" + "Set to default: /Users/rory/Documents/tester/\n\n"
@@ -55,6 +61,8 @@ class Operator
           puts "\n" + "Computer directory: " + @transfer.computer_dir + "\n\n"
         end
         self.function_selector
+
+
       when 'd'
         @transfer.transfer_photos_to_directories("day")
       when 'm'
