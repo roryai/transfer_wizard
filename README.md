@@ -37,25 +37,11 @@ I only want to transfer photos that have not already been transferred
 
 As a user
 
-So that I can make space available on my camera
-
-I want to delete photos from my SD card once they have been transferred
-
-
-
-As a user
-
-So that I don't accidentally lose my photos
-
-I want to confirm that photos have been transferred before I delete them
-
-
-
-As a user
-
 For ease of use
 
 I want to be able to run the program from my terminal
+
+
 
 
 
@@ -74,3 +60,19 @@ Transfer new
 Transfer with delete
 
 Destination directory
+
+
+
+As a user
+
+So that I can make space available on my camera
+
+I want to delete photos from my SD card once they have been transferred
+
+
+
+As a user
+
+So that I don't accidentally lose my photos
+
+I want to confirm that photos have been transferred before I delete them
