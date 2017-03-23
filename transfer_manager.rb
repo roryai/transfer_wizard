@@ -13,6 +13,7 @@ class Transfer
     @camera_dir ||= "/Users/rory/Documents/legacy_photos"
     @computer_dir ||= "/Users/rory/Documents/tester/"
     @file_name_time_array = Transfer.get_name_time_array(@camera_dir)
+    @no_exifr_array = []
     @log = Log.new
     @rjust = 45
   end
