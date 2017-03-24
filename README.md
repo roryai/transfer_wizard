@@ -11,23 +11,14 @@ Allows copy from and copy to directories to be set via terminal.
 Produces a log file giving details of all photos selected for transfer. Shows whether they are transferred or whether they already exist, like so:
 
 > Directory already exists:    2008-2-5
-
 >Directory created:           2016-12-4
-
 >Directory already exists:    2016-12-4
-
 >Directory already exists:    2016-12-29
-
 >IMG_0326.JPG                 file exists in: /Users/rory/Documents/tester/2008-2-5
-
 >photo1.JPG                   transferred to: /Users/rory/Documents/tester/2016-12-4
-
 >photo2.JPG                   transferred to: /Users/rory/Documents/tester/2016-12-4
-
 >photo4.JPG                   file exists in: /Users/rory/Documents/tester/2016-12-29
-
 >Photos on camera: 4
-
 >Photos transferred: 2
 
 
