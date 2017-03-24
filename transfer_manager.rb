@@ -10,7 +10,7 @@ class Transfer
   attr_accessor :camera_dir, :computer_dir
 
   def initialize
-    @camera_dir ||= "/Users/rory/Documents/legacy_photos"
+    @camera_dir ||= "/Users/rory/Documents/test_camera"
     @computer_dir ||= "/Users/rory/Documents/tester/"
     @file_name_time_array = Transfer.get_name_time_array(@camera_dir)
     @no_exifr_array = []
