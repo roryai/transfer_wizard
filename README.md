@@ -1,4 +1,4 @@
-### A program that transfers photos from a camera connected via USB.
+## A program that transfers photos from a camera connected via USB.
 
 
 
@@ -30,12 +30,19 @@ Produces a log file giving details of all photos selected for transfer. Shows wh
 >
 >Photos transferred: 2
 
+photo_transfer.rb is the file that you run to start the program.
+
+
+operator.rb contains the Operator class, which controls the flow of actions.
+
+
+transfer_manager.rb contains the Transfer class, which handles transfers and instantiates all other classes and includes the FileMgr and DirMgr modules.
 
 I am creating this to practice building software that interacts with my file system and had a real world application. Eventually it will replace the default Sony software that has hundreds of features that I don't use, and is missing a couple that I would like.
 
 The commit history from 7th February to 21st March disappeared when I copied my local files to another directory.
 
-# USER STORIES
+### USER STORIES
 
 As a user
 
