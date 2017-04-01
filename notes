@@ -33,6 +33,7 @@ end
 current setup assumes all folders that photos are to be copied into exist in computer_dir, not one level down within directories within those directories
 
 To do:
+Bug fix: ading camera or comp dir via terminal
 Goes recursively through file structure on camera, extracting all photos.
 can read file creation date when exif data is not available
 

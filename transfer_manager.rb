@@ -5,16 +5,16 @@ require_relative 'file_manager.rb'
 require_relative 'log.rb'
 
 class Transfer
-  extend DirMgr
-  extend FileMgr
-  attr_accessor :camera_dir, :computer_dir
+  # extend DirMgr
+  attr_accessor :camera_dir, :computer_dir, :dir_mgr
 
   def initialize
     @camera_dir ||= "/Users/rory/Documents/test_camera"
     @computer_dir ||= "/Users/rory/Documents/tester/"
-    @file_name_time_array = Transfer.get_name_time_array(@camera_dir)
-    @no_exifr_array = []
+    @file_name_time_array = FileMgr.new.get_name_time_array(@camera_dir)
+    @dir_mgr = DirMgr.new
     @log = Log.new
+    # @no_exifr_array = []
     @rjust = 45
   end
 
@@ -54,14 +54,14 @@ class Transfer
 
   def set_target_dir(copy_to, day_or_month, time)
     if day_or_month == "month"
-      return copy_to + time.year.to_s + "/" + (Transfer.folder_name_generator("month", time))
+      return copy_to + time.year.to_s + "/" + (@dir_mgr.folder_name_generator("month", time))
     elsif day_or_month == "day"
-      return copy_to + (Transfer.folder_name_generator(day_or_month, time))
+      return copy_to + (@dir_mgr.folder_name_generator(day_or_month, time))
     end
   end
 
   def transfer_photos_to_directories(day_or_month)
-    Transfer.create_dir_by_day_or_month(@file_name_time_array, @computer_dir, day_or_month)
+    @dir_mgr.create_dir_by_day_or_month(@file_name_time_array, @computer_dir, day_or_month)
     multiple_photo_transfer(@camera_dir, @computer_dir, day_or_month)
     @log.counter_output(@file_name_time_array)
     @log.create_log_file(@computer_dir)

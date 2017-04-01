@@ -1,7 +1,7 @@
 require 'FileUtils'
 require 'exifr'
 
-module FileMgr
+class FileMgr
 
   def get_file_names(dir)
     FileUtils.cd(dir)

@@ -1,7 +1,7 @@
 require 'FileUtils'
 require 'exifr'
 
-module DirMgr
+class DirMgr
 
   def make_directory(dir_to_make_within, dir_to_make)
     FileUtils.cd(dir_to_make_within)
@@ -44,6 +44,15 @@ module DirMgr
 
   def make_folder_name_day(time)
     time.year.to_s + "-" + time.month.to_s + "-" + time.day.to_s
+  end
+
+  def delete_all_in_folder
+    FileUtils.cd("/Users/rory/Documents/tester/")
+    file_name_array = Dir.glob("*")
+    file_name_array.each do |file|
+      puts "Deleting #{file.to_s}"
+      FileUtils.rm_r(file)
+    end
   end
 
 end

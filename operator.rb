@@ -8,7 +8,7 @@ class Operator
 
     Type 'q' and 'enter' to SET the camera directory.
     Type 'w' and 'enter' to SET the directory for photos to be transferred to.
-    
+
     Type 'e' and 'enter' to GET the camera directory.
     Type 'r' and 'enter' to GET the directory for photos to be transferred to.
 
@@ -67,9 +67,13 @@ class Operator
         @transfer.transfer_photos_to_directories("day")
       when 'm'
         @transfer.transfer_photos_to_directories("month")
+      when 'del'
+        @transfer.dir_mgr.delete_all_in_folder
       when 'y'
-        Transfer.create_year_and_month_directories(@transfer.file_name_time_array, @transfer.computer_dir)
+        # Transfer.create_year_and_month_directories(@transfer.file_name_time_array, @transfer.computer_dir)
         # @transfer.transfer_to_year_and_month_directories
+        puts "No method set"
+        self.function_selector
       when 'x'
         exit
       else
