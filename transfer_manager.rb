@@ -5,7 +5,6 @@ require_relative 'file_manager.rb'
 require_relative 'log.rb'
 
 class Transfer
-  # extend DirMgr
   attr_accessor :camera_dir, :computer_dir, :dir_mgr
 
   def initialize

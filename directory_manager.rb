@@ -46,8 +46,9 @@ class DirMgr
     time.year.to_s + "-" + time.month.to_s + "-" + time.day.to_s
   end
 
-  def delete_all_in_folder
-    FileUtils.cd("/Users/rory/Documents/tester/")
+  def delete_all_in_folder(dir)
+    p dir
+    FileUtils.cd(dir)
     file_name_array = Dir.glob("*")
     file_name_array.each do |file|
       puts "Deleting #{file.to_s}"

@@ -14,6 +14,9 @@ class Operator
 
     Type 'd' and 'enter' to transfer all photos from your camera to folders on your computer according to the date taken.
     Type 'm' and 'enter' to transfer all photos from your camera to folders on your computer according to the month taken.
+
+    Type 'm' and 'enter' to delete all files in 'tester' directory.
+
     Type 'y' and 'enter' to run current test method.
     Type 'x' and 'enter' to quit this program."
   end
@@ -28,6 +31,7 @@ class Operator
     end
   end
 
+  # Code below is not refactored into smaller methods as it reads better like a menu.
   def function_selector
     puts @welcome_text
     input = STDIN.gets.chomp
@@ -68,7 +72,7 @@ class Operator
       when 'm'
         @transfer.transfer_photos_to_directories("month")
       when 'del'
-        @transfer.dir_mgr.delete_all_in_folder
+        @transfer.dir_mgr.delete_all_in_folder(@transfer.computer_dir)
       when 'y'
         # Transfer.create_year_and_month_directories(@transfer.file_name_time_array, @transfer.computer_dir)
         # @transfer.transfer_to_year_and_month_directories
