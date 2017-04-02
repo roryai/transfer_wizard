@@ -5,10 +5,10 @@ require_relative 'file_manager.rb'
 require_relative 'log.rb'
 
 class Transfer
-  attr_accessor :camera_dir, :computer_dir, :dir_mgr
+  attr_accessor :camera_dir, :computer_dir, :file_name_time_array, :dir_mgr
 
   def initialize
-    @camera_dir ||= "/Users/rory/Documents/test_camera"
+    @camera_dir ||= "/Users/rory/Documents/legacy_photos"
     @computer_dir ||= "/Users/rory/Documents/tester/"
     @file_name_time_array = FileMgr.new.get_name_time_array(@camera_dir)
     @dir_mgr = DirMgr.new

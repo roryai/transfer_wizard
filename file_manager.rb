@@ -13,9 +13,15 @@ class FileMgr
     file_name_array = get_file_names(camera_dir)
     file_name_time_array = []
     file_name_array.each do |file_name|
-      file_name_time_array << [file_name, EXIFR::JPEG.new(file_name).date_time]
+      begin
+        file_name_time_array << [file_name, EXIFR::JPEG.new(file_name).date_time]
+      rescue
+        file_name_time_array << [file_name, File.ctime(file_name)]
+      end
     end
     file_name_time_array
   end
 
 end
+
+# EXIFR::JPEG.new(file_name).date_time File.ctime(file_name)
