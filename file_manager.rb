@@ -21,6 +21,9 @@ class FileMgr
     file_name_array.each do |file_name|
       p "pwd: " + FileUtils.pwd
         begin
+          # insert file extension filter here- only allow pics and vids through.
+          # do 'exifr section' first, then 'no exifr section'.
+          # send all other files to 'no exifr section'.
           if EXIFR::JPEG.new(file_name).date_time == nil
             p "no exifr section"
             full_file_path = FileUtils.pwd + "/" + file_name

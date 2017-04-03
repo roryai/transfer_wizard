@@ -21,6 +21,8 @@ class Transfer
 
   def transfer_photos_to_directories(day_or_month)
     @dir_mgr.create_dir_by_day_or_month(@file_name_time_array, @computer_dir, day_or_month)
+    # insert method here that creates 'Unsorted' directories.
+    # insert method here that transfers @no_exifr_array to 'Unsorted' directories?
     multiple_photo_transfer(@camera_dir, @computer_dir, day_or_month)
     @log.counter_output(@file_name_time_array)
     @log.create_log_file(@computer_dir)

@@ -33,7 +33,7 @@ class DirMgr
       return make_folder_name_month(time)
     elsif day_or_month == "day"
       return make_folder_name_day(time)
-      # put error here if wrong param passed
+      # put error here if wrong param passed?
     end
   end
 
