@@ -5,16 +5,41 @@ require_relative 'file_manager.rb'
 require_relative 'log.rb'
 
 class Transfer
-  attr_accessor :camera_dir, :computer_dir, :file_name_time_array, :dir_mgr
+  attr_accessor :camera_dir, :computer_dir, :file_name_time_array, :no_exifr_array, :dir_mgr
 
   def initialize
-    @camera_dir ||= "/Users/rory/Documents/legacy_photos"
+    @camera_dir ||= "/Users/rory/Documents/test_camera"
     @computer_dir ||= "/Users/rory/Documents/tester/"
-    @file_name_time_array = FileMgr.new.get_name_time_array(@camera_dir)
+    @file_mgr = FileMgr.new
+    @all_files_and_times = @file_mgr.get_name_time_array(@camera_dir)
+    @file_name_time_array = @all_files_and_times[0]
+    @no_exifr_array = @all_files_and_times[1]
     @dir_mgr = DirMgr.new
     @log = Log.new
-    # @no_exifr_array = []
     @rjust = 45
+  end
+
+  def transfer_photos_to_directories(day_or_month)
+    @dir_mgr.create_dir_by_day_or_month(@file_name_time_array, @computer_dir, day_or_month)
+    multiple_photo_transfer(@camera_dir, @computer_dir, day_or_month)
+    @log.counter_output(@file_name_time_array)
+    @log.create_log_file(@computer_dir)
+  end
+
+  def multiple_photo_transfer(copy_from, copy_to, day_or_month)
+    @file_name_time_array.each do |file_name, time|
+      target_dir = set_target_dir(copy_to, time, day_or_month)
+      FileUtils.cd(target_dir)
+      single_photo_transfer(copy_from + "/" + file_name, target_dir + "/" + file_name, file_name, target_dir)
+    end
+  end
+
+  def set_target_dir(copy_to, time, day_or_month)
+    if day_or_month == "month"
+      return copy_to + time.year.to_s + "/" + (@dir_mgr.folder_name_generator(time, "month"))
+    elsif day_or_month == "day"
+      return copy_to + (@dir_mgr.folder_name_generator(time, day_or_month))
+    end
   end
 
   def single_photo_transfer(copy_from, copy_to, file_name, target_dir)
@@ -42,29 +67,4 @@ class Transfer
   def copy_file(copy_from, copy_to)
     FileUtils.copy_file(copy_from, copy_to, preserve = false, dereference = true)
   end
-
-  def multiple_photo_transfer(copy_from, copy_to, day_or_month)
-    @file_name_time_array.each do |file_name, time|
-      target_dir = set_target_dir(copy_to, day_or_month, time)
-      FileUtils.cd(target_dir)
-      single_photo_transfer(copy_from + "/" + file_name, target_dir + "/" + file_name, file_name, target_dir)
-    end
-  end
-
-  def set_target_dir(copy_to, day_or_month, time)
-    if day_or_month == "month"
-      return copy_to + time.year.to_s + "/" + (@dir_mgr.folder_name_generator("month", time))
-    elsif day_or_month == "day"
-      return copy_to + (@dir_mgr.folder_name_generator(day_or_month, time))
-    end
-  end
-
-  def transfer_photos_to_directories(day_or_month)
-    @dir_mgr.create_dir_by_day_or_month(@file_name_time_array, @computer_dir, day_or_month)
-    multiple_photo_transfer(@camera_dir, @computer_dir, day_or_month)
-    @log.counter_output(@file_name_time_array)
-    @log.create_log_file(@computer_dir)
-  end
-
-
 end

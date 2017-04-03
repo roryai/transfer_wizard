@@ -20,15 +20,15 @@ class DirMgr
   def create_dir_by_day_or_month(file_name_time_array, computer_dir, day_or_month)
     file_name_time_array.each do |file_name, time|
       if day_or_month == "day"
-        make_directory(computer_dir, folder_name_generator(day_or_month, time))
+        make_directory(computer_dir, folder_name_generator(time, day_or_month))
       elsif day_or_month == "month"
         make_directory(computer_dir, time.year.to_s)
-        make_directory(computer_dir + time.year.to_s, folder_name_generator("month", time))
+        make_directory(computer_dir + time.year.to_s, folder_name_generator(time, "month"))
       end
     end
   end
 
-  def folder_name_generator(day_or_month, time)
+  def folder_name_generator(time, day_or_month)
     if day_or_month == "month"
       return make_folder_name_month(time)
     elsif day_or_month == "day"

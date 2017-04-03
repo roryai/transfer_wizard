@@ -33,9 +33,11 @@ end
 current setup assumes all folders that photos are to be copied into exist in computer_dir, not one level down within directories within those directories
 
 To do:
-Bug fix: ading camera or comp dir via terminal
+Bug fix: adding camera or comp dir via terminal
 Goes recursively through file structure on camera, extracting all photos.
 can read file creation date when exif data is not available
+How to deal with / and \ on in file path on windows and mac?
+How to deal with files that have same name but are different? Make copy if size is different my >1%?
 
 filemanager::get_fileNames- add extensions, rather than all files
 output folders created to log?
