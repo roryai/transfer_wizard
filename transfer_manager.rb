@@ -8,14 +8,14 @@ class Transfer
   attr_accessor :camera_dir, :computer_dir, :file_name_time_array, :no_exifr_array, :dir_mgr
 
   def initialize
-    @camera_dir ||= "/Users/rory/Documents/test_camera"
+    @camera_dir ||= "/Users/rory/Documents/legacy_photos"
     @computer_dir ||= "/Users/rory/Documents/tester/"
     @file_mgr = FileMgr.new
+    @dir_mgr = DirMgr.new
+    @log = Log.new
     @all_files_and_times = @file_mgr.get_name_time_array(@camera_dir)
     @file_name_time_array = @all_files_and_times[0]
     @no_exifr_array = @all_files_and_times[1]
-    @dir_mgr = DirMgr.new
-    @log = Log.new
     @rjust = 45
   end
 
