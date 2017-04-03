@@ -27,10 +27,10 @@ class Transfer
   end
 
   def multiple_photo_transfer(copy_from, copy_to, day_or_month)
-    @file_name_time_array.each do |file_name, time|
+    @file_name_time_array.each do |file_name, time, full_file_path, file_dir|
       target_dir = set_target_dir(copy_to, time, day_or_month)
       FileUtils.cd(target_dir)
-      single_photo_transfer(copy_from + "/" + file_name, target_dir + "/" + file_name, file_name, target_dir)
+      single_photo_transfer(full_file_path, file_name, target_dir)
     end
   end
 
@@ -42,11 +42,11 @@ class Transfer
     end
   end
 
-  def single_photo_transfer(copy_from, copy_to, file_name, target_dir)
+  def single_photo_transfer(copy_from, file_name, target_dir)
     if File.exist?(file_name)
       file_exists(file_name, target_dir)
     else
-      transfer_file(copy_from, copy_to, file_name, target_dir)
+      transfer_file(copy_from, file_name, target_dir)
     end
   end
 
@@ -56,9 +56,9 @@ class Transfer
     puts file_name + already_exists + target_dir
   end
 
-  def transfer_file(copy_from, copy_to, file_name, target_dir)
+  def transfer_file(copy_from, file_name, target_dir)
     transferred_to = " transferred to: ".rjust(@rjust-file_name.length)
-    copy_file(copy_from, copy_to)
+    copy_file(copy_from, target_dir + "/" + file_name)
     @log.log_text << file_name + transferred_to + target_dir
     puts file_name + transferred_to + target_dir
     @log.transferred_count += 1

@@ -21,23 +21,24 @@ class FileMgr
     file_name_array.each do |file_name|
         begin
           if EXIFR::JPEG.new(file_name).date_time == nil
-            p "asd"
+            p "no exifr section"
             p "dir name"
             p File.dirname(file_name)
             p FileUtils.pwd
             p file_name
             @no_exifr_array << file_name
           else
-            p "zcv"
+            p "exifr section"
+            # this enters each file's info in the following format: [file_name, time, full_file_path, file_dir]
             @file_name_time_array << [file_name, EXIFR::JPEG.new(file_name).date_time, FileUtils.pwd + "/" + file_name, FileUtils.pwd]
           end
           # if file_name has no EXIF data
         rescue EXIFR::MalformedJPEG
-          p 'mal jpeg'
+          p 'malformed jpeg'
           @file_name_time_array << [file_name, File.ctime(file_name)]
           # if file_name is a directory
         rescue Errno::EISDIR
-          p 'eisdir'
+          p "eisdir- it's a directory error"
           get_name_time_array(FileUtils.pwd + "/" + file_name)
           file_name_array = []
         end

@@ -72,7 +72,15 @@ class Operator
       when 'm'
         @transfer.transfer_photos_to_directories("month")
       when 'del'
-        @transfer.dir_mgr.delete_all_in_folder(@transfer.computer_dir)
+        dir = @transfer.computer_dir
+        puts "Are you sure you want to delete all files in " + dir + "?"
+        puts "Type 'y' to proceed"
+        input = gets.chomp
+        if input == 'y'
+          @transfer.dir_mgr.delete_all_in_folder(dir)
+        else
+          self.function_selector
+        end
       when 'y'
         # Transfer.create_year_and_month_directories(@transfer.file_name_time_array, @transfer.computer_dir)
         # @transfer.transfer_to_year_and_month_directories
