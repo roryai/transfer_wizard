@@ -4,8 +4,8 @@ require 'exifr'
 class FileMgr
 
   def initialize
-    @file_name_time_array = []
-    @unsorted_pics_and_vids = []
+    @files_with_exif = []
+    @unsorted_media = []
     @unsorted_files = []
     @pic_extensions = ['.bmp', '.gif', '.jpg', '.jpeg', '.png', '.tif', '.tiff', '.BMP', '.GIF', '.JPG', '.JPEG', '.PNG', '.TIF', '.TIFF', ]
     @vid_extensions = ['.3g2', '.3gp', '.asf', '.asx', '.avi', '.m4v', '.mov', '.mp4', '.mpg', '.rm', '.wmv', '.3G2', '.3GP', '.ASF', '.ASX', '.AVI', '.M4V', '.MOV', '.MP4', '.MPG', '.RM', '.WMV']
@@ -23,7 +23,7 @@ class FileMgr
       file_dir = FileUtils.pwd
       file_type_sorter(file_name, time, full_file_path, file_dir, dir)
     end
-    [@file_name_time_array, @unsorted_pics_and_vids, @unsorted_files]
+    [@files_with_exif, @unsorted_media, @unsorted_files]
   end
 
   def file_type_sorter(file_name, time, full_file_path, file_dir, dir)
@@ -40,16 +40,16 @@ class FileMgr
     begin
       exif_handler(file_name, time, full_file_path, file_dir)
     rescue EXIFR::MalformedJPEG
-      @unsorted_pics_and_vids << [file_name, time, full_file_path, file_dir]
+      @unsorted_media << [file_name, time, full_file_path, file_dir]
     end
   end
 
   def exif_handler(file_name, time, full_file_path, file_dir)
     if EXIFR::JPEG.new(file_name).date_time == nil
-      @unsorted_pics_and_vids << [file_name, time, full_file_path, file_dir]
+      @unsorted_media << [file_name, time, full_file_path, file_dir]
     else
       time = EXIFR::JPEG.new(file_name).date_time
-      @file_name_time_array << [file_name, time, full_file_path, file_dir]
+      @files_with_exif << [file_name, time, full_file_path, file_dir]
     end
   end
 

@@ -1,6 +1,6 @@
 require_relative '../transfer_manager.rb'
 
-@file_name_time_array = [["photo2.JPG", Time.new(1986, 03, 07, 18, 15)]]
+@files_with_exif = [["photo2.JPG", Time.new(1986, 03, 07, 18, 15)]]
 
 @transfer = Transfer.new
 
@@ -10,7 +10,7 @@ describe Transfer do
   end
 end
 
-# expect(Transfer.make_folder_name_day(@file_name_time_array[0[1]])).to eq "2016-12-04"
+# expect(Transfer.make_folder_name_day(@files_with_exif[0[1]])).to eq "2016-12-04"
 
 # require 'journey'
 # require 'oystercard'

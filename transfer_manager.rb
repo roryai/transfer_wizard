@@ -5,7 +5,7 @@ require_relative 'file_manager.rb'
 require_relative 'log.rb'
 
 class Transfer
-  attr_accessor :camera_dir, :computer_dir, :file_name_time_array, :no_exifr_array, :unsorted_files, :dir_mgr
+  attr_accessor :camera_dir, :computer_dir, :files_with_exif, :unsorted_media, :unsorted_files, :dir_mgr
 
   def initialize
     @camera_dir ||= "/Users/rory/Documents/legacy_photos"
@@ -14,23 +14,23 @@ class Transfer
     @dir_mgr = DirMgr.new
     @log = Log.new
     @all_files_and_times = @file_mgr.get_name_time_array(@camera_dir)
-    @file_name_time_array = @all_files_and_times[0]
-    @no_exifr_array = @all_files_and_times[1]
+    @files_with_exif = @all_files_and_times[0]
+    @unsorted_media = @all_files_and_times[1]
     @unsorted_files = @all_files_and_times[2]
     @rjust = 45
   end
 
   def transfer_photos_to_directories(day_or_month)
-    @dir_mgr.create_dir_by_day_or_month(@file_name_time_array, @computer_dir, day_or_month)
+    @dir_mgr.create_dir_by_day_or_month(@files_with_exif, @computer_dir, day_or_month)
     # insert method here that creates 'Unsorted' directories.
-    # insert method here that transfers @no_exifr_array to 'Unsorted' directories?
+    # insert method here that transfers @unsorted_media to 'Unsorted' directories?
     multiple_photo_transfer(@camera_dir, @computer_dir, day_or_month)
-    @log.counter_output(@file_name_time_array)
+    @log.counter_output(@files_with_exif)
     @log.create_log_file(@computer_dir)
   end
 
   def multiple_photo_transfer(copy_from, copy_to, day_or_month)
-    @file_name_time_array.each do |file_name, time, full_file_path, file_dir|
+    @files_with_exif.each do |file_name, time, full_file_path, file_dir|
       target_dir = set_target_dir(copy_to, time, day_or_month)
       FileUtils.cd(target_dir)
       single_photo_transfer(full_file_path, file_name, target_dir)

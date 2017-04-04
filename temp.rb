@@ -6,7 +6,7 @@ begin
             p "no exifr section"
             full_file_path = FileUtils.pwd + "/" + file_name
             file_dir = FileUtils.pwd
-            @no_exifr_array << [file_name, "no_time_stamp", full_file_path, file_dir]
+            @unsorted_media << [file_name, "no_time_stamp", full_file_path, file_dir]
             p file_name + ' added'
           else
             p "exifr section"
@@ -15,7 +15,7 @@ begin
             time = EXIFR::JPEG.new(file_name).date_time
             full_file_path = FileUtils.pwd + "/" + file_name
             file_dir = FileUtils.pwd
-            @file_name_time_array << [file_name, time, full_file_path, file_dir]
+            @files_with_exif << [file_name, time, full_file_path, file_dir]
             p file_name + ' added'
           end
           # if file_name has no EXIF data
@@ -24,7 +24,7 @@ begin
           time = File.ctime(file_name)
           full_file_path = FileUtils.pwd + "/" + file_name
           file_dir = FileUtils.pwd
-          @file_name_time_array << [file_name, time, full_file_path, file_dir]
+          @files_with_exif << [file_name, time, full_file_path, file_dir]
           p file_name + ' added'
           # if file_name is a directory
         rescue Errno::EISDIR
