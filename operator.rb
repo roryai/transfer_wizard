@@ -84,11 +84,14 @@ class Operator
       when 'y'
         # Transfer.create_year_and_month_directories(@transfer.file_name_time_array, @transfer.computer_dir)
         # @transfer.transfer_to_year_and_month_directories
-        puts "file_name_time_array below"
+        puts "file_name_time_array BELOW"
         puts @transfer.file_name_time_array
         puts
-        puts "no_exifr_array below"
+        puts "no_exifr_array BELOW"
         puts @transfer.no_exifr_array
+        puts
+        puts "unsorted_files BELOW"
+        puts @transfer.unsorted_files
         # puts "No method set"
         self.function_selector
       when 'x'

@@ -5,7 +5,7 @@ require_relative 'file_manager.rb'
 require_relative 'log.rb'
 
 class Transfer
-  attr_accessor :camera_dir, :computer_dir, :file_name_time_array, :no_exifr_array, :dir_mgr
+  attr_accessor :camera_dir, :computer_dir, :file_name_time_array, :no_exifr_array, :unsorted_files, :dir_mgr
 
   def initialize
     @camera_dir ||= "/Users/rory/Documents/legacy_photos"
@@ -16,6 +16,7 @@ class Transfer
     @all_files_and_times = @file_mgr.get_name_time_array(@camera_dir)
     @file_name_time_array = @all_files_and_times[0]
     @no_exifr_array = @all_files_and_times[1]
+    @unsorted_files = @all_files_and_times[2]
     @rjust = 45
   end
 
