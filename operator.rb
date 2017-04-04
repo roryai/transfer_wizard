@@ -68,7 +68,9 @@ class Operator
 
 
       when 'd'
-        @transfer.transfer_photos_to_directories("day")
+        @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.files_with_exif, "day")
+        @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.unsorted_media, "day")
+        @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.unsorted_files, "day")
       when 'm'
         @transfer.transfer_photos_to_directories("month")
       when 'del'
@@ -76,11 +78,8 @@ class Operator
         puts "Are you sure you want to delete all files in " + dir + "?"
         puts "Type 'y' to proceed"
         input = gets.chomp
-        if input == 'y'
-          @transfer.dir_mgr.delete_all_in_folder(dir)
-        else
-          self.function_selector
-        end
+        @transfer.dir_mgr.delete_all_in_folder(dir) if input == 'y'
+        self.function_selector
       when 'y'
         # Transfer.create_year_and_month_directories(@transfer.file_name_time_array, @transfer.computer_dir)
         # @transfer.transfer_to_year_and_month_directories

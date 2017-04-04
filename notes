@@ -1,5 +1,18 @@
-File transfer process:
+To do:
+Bug fix: adding camera or comp dir via terminal
+How to deal with / and \ on in file path on windows and mac? RUBY_PLATFORM
+How to deal with files that have same name but are different? Make copy if size is different my >1%?
+Catch chdir warning
+Add note to README: on Windows, File.ctime gives date file was created, on UNIX it gives date file was last moved.
+Change name of camera_dir and computer_dir to source and destination throughout
 
+Include?
+error handling for lack of exif data- send to bulk folder after prompt?
+output folders created to log?
+
+Old:
+
+File transfer process:
 get list of file names on sd card and store in an array
 pass array to method that interpolates the file name into a string of which file to be copied.
 
@@ -31,24 +44,3 @@ make month folders
 end
 
 current setup assumes all folders that photos are to be copied into exist in computer_dir, not one level down within directories within those directories
-
-To do:
-Bug fix: adding camera or comp dir via terminal
-Bug fix: get_name_time_array crashes if it deals with directories before photos one level up the file tree.
-Goes recursively through file structure on camera, extracting all photos.
-can read file creation date when exif data is not available
-How to deal with / and \ on in file path on windows and mac?
-How to deal with files that have same name but are different? Make copy if size is different my >1%?
-
-filemanager::get_fileNames- add extensions, rather than all files
-output folders created to log?
-create counter class?
-Can cope with seeing directories on the camera.
-Add note to README: on Windows, File.ctime gives date file was created, on UNIX it gives date file was last moved.
-
-Added functions:
-Prints transfer results to log file
-add error handling for when files already exist
-
-Include?
-error handling for lack of exif data- send to bulk folder after prompt?

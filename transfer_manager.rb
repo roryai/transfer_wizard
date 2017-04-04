@@ -20,17 +20,17 @@ class Transfer
     @rjust = 45
   end
 
-  def transfer_photos_to_directories(day_or_month)
-    @dir_mgr.create_dir_by_day_or_month(@files_with_exif, @computer_dir, day_or_month)
+  def transfer_photos_to_directories(source, destination, files, day_or_month)
+    @dir_mgr.create_dir_by_day_or_month(files, destination, day_or_month)
     # insert method here that creates 'Unsorted' directories.
     # insert method here that transfers @unsorted_media to 'Unsorted' directories?
-    multiple_photo_transfer(@camera_dir, @computer_dir, day_or_month)
-    @log.counter_output(@files_with_exif)
-    @log.create_log_file(@computer_dir)
+    multiple_photo_transfer(source, destination, files, day_or_month)
+    @log.counter_output(files)
+    @log.create_log_file(destination)
   end
 
-  def multiple_photo_transfer(copy_from, copy_to, day_or_month)
-    @files_with_exif.each do |file_name, time, full_file_path, file_dir|
+  def multiple_photo_transfer(copy_from, copy_to, files, day_or_month)
+    files.each do |file_name, time, full_file_path, file_dir|
       target_dir = set_target_dir(copy_to, time, day_or_month)
       FileUtils.cd(target_dir)
       single_photo_transfer(full_file_path, file_name, target_dir)
