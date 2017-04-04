@@ -9,29 +9,31 @@ class DirMgr
   end
 
   def create_or_skip(dir_to_make)
-    if Dir.exist?(dir_to_make)
-      puts "Directory already exists: " + (" " * 3) + dir_to_make
-    else
+    if !Dir.exist?(dir_to_make)
       FileUtils.mkdir(dir_to_make)
       puts "Directory created: " + (" " * 10) + dir_to_make
     end
   end
 
-  def create_dir_by_day_or_month(file_name_time_array, computer_dir, day_or_month)
+  def create_dir_by_day_or_month(file_name_time_array, computer_dir, day_or_month, sort_status)
     file_name_time_array.each do |file_name, time|
-      if day_or_month == "day"
+      if sort_status == :unsorted_media
+        make_directory(computer_dir, "Unsorted Media")
+      elsif sort_status == :unsorted_files
+        make_directory(computer_dir, "Unsorted Files")
+      elsif day_or_month == :day
         make_directory(computer_dir, folder_name_generator(time, day_or_month))
-      elsif day_or_month == "month"
+      elsif day_or_month == :month
         make_directory(computer_dir, time.year.to_s)
-        make_directory(computer_dir + time.year.to_s, folder_name_generator(time, "month"))
+        make_directory(computer_dir + time.year.to_s, folder_name_generator(time, :month))
       end
     end
   end
 
   def folder_name_generator(time, day_or_month)
-    if day_or_month == "month"
+    if day_or_month == :month
       return make_folder_name_month(time)
-    elsif day_or_month == "day"
+    elsif day_or_month == :day
       return make_folder_name_day(time)
       # put error here if wrong param passed?
     end

@@ -15,7 +15,7 @@ class Operator
     Type 'd' and 'enter' to transfer all photos from your camera to folders on your computer according to the date taken.
     Type 'm' and 'enter' to transfer all photos from your camera to folders on your computer according to the month taken.
 
-    Type 'm' and 'enter' to delete all files in 'tester' directory.
+    Type 'del' and 'enter' to delete all files in 'tester' directory.
 
     Type 'y' and 'enter' to run current test method.
     Type 'x' and 'enter' to quit this program."
@@ -23,9 +23,9 @@ class Operator
 
   def terminal_flag_processor
     if ARGV[0] == 'date'
-      @transfer.transfer_photos_to_directories("day")
+      @transfer.transfer_photos_to_directories(:day)
     elsif ARGV[0] == 'month'
-      @transfer.transfer_photos_to_directories("month")
+      @transfer.transfer_photos_to_directories(:month)
     else
       function_selector
     end
@@ -68,11 +68,21 @@ class Operator
 
 
       when 'd'
-        @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.files_with_exif, "day")
-        @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.unsorted_media, "day")
-        @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.unsorted_files, "day")
+        @transfer.log.log_text << "SOURCE: " + @transfer.camera_dir
+        @transfer.log.log_text << "DESTINATION: " + @transfer.computer_dir
+        @transfer.log.log_text << "Transferred at :" + Time.new.to_s + "\n"
+        @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.files_with_exif, :day, :exif)
+        @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.unsorted_media, :day, :unsorted_media)
+        @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.unsorted_files, :day, :unsorted_files)
+        @transfer.log.create_log_file(@transfer.computer_dir)
       when 'm'
-        @transfer.transfer_photos_to_directories("month")
+        @transfer.log.log_text << "SOURCE: " + @transfer.camera_dir
+        @transfer.log.log_text << "DESTINATION: " + @transfer.computer_dir
+        @transfer.log.log_text << "Transferred at :" + Time.new.to_s + "\n"
+        @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.files_with_exif, :month, :exif)
+        @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.unsorted_media, :month, :unsorted_media)
+        @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.unsorted_files, :month, :unsorted_files)
+        @transfer.log.create_log_file(@transfer.computer_dir)
       when 'del'
         dir = @transfer.computer_dir
         puts "Are you sure you want to delete all files in " + dir + "?"
