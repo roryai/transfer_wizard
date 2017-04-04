@@ -68,17 +68,13 @@ class Operator
 
 
       when 'd'
-        @transfer.log.log_text << "SOURCE: " + @transfer.camera_dir
-        @transfer.log.log_text << "DESTINATION: " + @transfer.computer_dir
-        @transfer.log.log_text << "Transferred at :" + Time.new.to_s + "\n"
+        log_header
         @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.files_with_exif, :day, :exif)
         @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.unsorted_media, :day, :unsorted_media)
         @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.unsorted_files, :day, :unsorted_files)
         @transfer.log.create_log_file(@transfer.computer_dir)
       when 'm'
-        @transfer.log.log_text << "SOURCE: " + @transfer.camera_dir
-        @transfer.log.log_text << "DESTINATION: " + @transfer.computer_dir
-        @transfer.log.log_text << "Transferred at :" + Time.new.to_s + "\n"
+        log_header
         @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.files_with_exif, :month, :exif)
         @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.unsorted_media, :month, :unsorted_media)
         @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.unsorted_files, :month, :unsorted_files)
@@ -91,8 +87,6 @@ class Operator
         @transfer.dir_mgr.delete_all_in_folder(dir) if input == 'y'
         self.function_selector
       when 'y'
-        # Transfer.create_year_and_month_directories(@transfer.file_name_time_array, @transfer.computer_dir)
-        # @transfer.transfer_to_year_and_month_directories
         puts "files_with_exif BELOW"
         puts @transfer.files_with_exif
         puts
@@ -111,7 +105,10 @@ class Operator
     end
   end
 
+  def log_header
+    @transfer.log.log_text << "SOURCE: " + @transfer.camera_dir
+    @transfer.log.log_text << "DESTINATION: " + @transfer.computer_dir
+    @transfer.log.log_text << "Transferred at :" + Time.new.to_s + "\n"
+  end
+
 end
-
-
-# Transfer.make_folder_name_month(Time.new(1986, 03, 07, 18, 15))
