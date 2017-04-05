@@ -58,7 +58,7 @@ photo_transfer.rb is the file that you run to start the program.
 operator.rb contains the Operator class, which controls the flow of actions.
 
 
-transfer_manager.rb contains the Transfer class, which handles transfers and instantiates all other classes and includes the FileMgr and DirMgr modules.
+transfer_manager.rb contains the Transfer class, which handles transfers and instantiates all other classes and includes the FileMgr and DirMgr classes.
 
 
 The commit history from 7th February to 21st March disappeared when I copied my local files to another directory.
