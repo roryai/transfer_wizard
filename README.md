@@ -44,9 +44,10 @@ Run the following:
 Use the files located in the test_source and test_destination directories to see the capabilities of the program. One picture has EXIF data, two pictures do not, and the PDF demonstrates how other files are treated.
 
 
-NB: you will need to edit the variables '@source_dir' and '@destination_dir' in the file 'transfer_manager.rb' before running the program like this. These variables can be changed in the command line interface if you run the program without command line flags.
+NB: you will need to edit the variables '@source_dir' and '@destination_dir' in the file 'transfer_manager.rb' before running the program using command line flags. These variables can be changed in the command line interface if you run the program without command line flags.
 
 
+### DESCRIPTION
 
 
 Originally designed to take photos from a camera and sort them into directories on a hard drive, the program now deals with all file types and can be used as a file system reorganisation tool.
