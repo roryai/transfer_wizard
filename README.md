@@ -1,8 +1,8 @@
 ## A program that transfers files and organises them into folders by date or month.
 
-Originally designed to take photos from my camera and sort them into directories on my hard drive, the program now deals with all file types and can be used as a file system reorganisation tool.
+Originally designed to take photos from a camera and sort them into directories on a hard drive, the program now deals with all file types and can be used as a file system reorganisation tool.
 
-If you have one or more unorganised set of photos or files on your hard drive this program will organise it all for you. It can then be used to transfer photos from your camera, so that all your past and current photos can be organised in the same place.
+If you have one or more unorganised set of photos or files on a hard drive this program will organise them into directories the day or month in which they were created. It can then be used to transfer photos from your camera, so that all past and current photos can be organised in the same place.
 
 
 Photos and videos are sorted according to EXIF data, if it exists. If there is no EXIF data they are sorted by file creation time. All other file types are sorted by file creation time.
