@@ -70,6 +70,14 @@ class Operator
         log_header
         month_unsorted
         @transfer.log.create_log_file(@transfer.computer_dir)
+      when 'dx'
+        log_header
+        day_all_sorted
+        @transfer.log.create_log_file(@transfer.computer_dir)
+      when 'mx'
+        log_header
+        month_all_sorted
+        @transfer.log.create_log_file(@transfer.computer_dir)
       when 'del'
         delete_destination_contents
         self.function_selector
@@ -122,15 +130,27 @@ class Operator
   end
 
   def day_unsorted
-    @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.files_with_exif, :day, :exif)
+    @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.files_with_exif, :day, :sort)
     @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.unsorted_media, :day, :unsorted_media)
     @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.unsorted_files, :day, :unsorted_files)
   end
 
   def month_unsorted
-    @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.files_with_exif, :month, :exif)
+    @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.files_with_exif, :month, :sort)
     @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.unsorted_media, :month, :unsorted_media)
     @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.unsorted_files, :month, :unsorted_files)
+  end
+
+  def day_all_sorted
+    @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.files_with_exif, :day, :sort)
+    @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.unsorted_media, :day, :sort)
+    @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.unsorted_files, :day, :sort)
+  end
+
+  def month_all_sorted
+    @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.files_with_exif, :month, :sort)
+    @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.unsorted_media, :month, :sort)
+    @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.unsorted_files, :month, :sort)
   end
 
   def delete_destination_contents
