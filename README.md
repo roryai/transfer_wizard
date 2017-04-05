@@ -25,7 +25,9 @@ NB: on UNIX systems, file creation date is when the file was last copied or move
 A log is generated showing the information below:
 
 >SOURCE: /Users/rory/Documents/test_camera
+>
 >DESTINATION: /Users/rory/Documents/tester/
+>
 >Transferred at :2017-04-05 11:39:48 +0100
 >
 >
@@ -33,14 +35,20 @@ A log is generated showing the information below:
 >
 >
 >IMG_0326.JPG                    transferred to: /Users/rory/Documents/tester/2008-2-5
+>
 >photo1.JPG                      transferred to: /Users/rory/Documents/tester/2016-12-4
+>
 >photo2.JPG                      transferred to: /Users/rory/Documents/tester/2016-12-4
+>
 >photo4.JPG                      transferred to: /Users/rory/Documents/tester/2016-12-29
 >
 >
 >END
+>
 >Files in source directory: 4
+>
 >Files transferred: 4
+>
 >FLAGS: Day or month: day, Sort status: sort
 
 
