@@ -14,7 +14,7 @@ The program can be set to sort files into different folders: files with EXIF can
 Alternatively, all photos & videos can be sorted into dated or month folders, with all other files going into the 'Unsorted Files' directory.
 
 
-Lastly, all files can be sorted into dat or month folders.
+Lastly, all files can be sorted into date or month folders.
 
 
 The program generates directory names according to the time stamp of a file.
@@ -25,23 +25,23 @@ NB: on UNIX systems, file creation date is when the file was last copied or move
 A log is generated showing the information below:
 
 >SOURCE: /Users/rory/Documents/test_camera
-DESTINATION: /Users/rory/Documents/tester/
-Transferred at :2017-04-05 11:39:48 +0100
+>DESTINATION: /Users/rory/Documents/tester/
+>Transferred at :2017-04-05 11:39:48 +0100
 >
 >
-START
+>START
 >
 >
-IMG_0326.JPG                    transferred to: /Users/rory/Documents/tester/2008-2-5
-photo1.JPG                      transferred to: /Users/rory/Documents/tester/2016-12-4
-photo2.JPG                      transferred to: /Users/rory/Documents/tester/2016-12-4
-photo4.JPG                      transferred to: /Users/rory/Documents/tester/2016-12-29
+>IMG_0326.JPG                    transferred to: /Users/rory/Documents/tester/2008-2-5
+>photo1.JPG                      transferred to: /Users/rory/Documents/tester/2016-12-4
+>photo2.JPG                      transferred to: /Users/rory/Documents/tester/2016-12-4
+>photo4.JPG                      transferred to: /Users/rory/Documents/tester/2016-12-29
 >
 >
-END
-Files in source directory: 4
-Files transferred: 4
-FLAGS: Day or month: day, Sort status: sort
+>END
+>Files in source directory: 4
+>Files transferred: 4
+>FLAGS: Day or month: day, Sort status: sort
 
 
 photo_transfer.rb is the file that you run to start the program.
