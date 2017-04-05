@@ -12,9 +12,11 @@ The program can be operated with command line flags, bypassing the need to use t
 To perform the following function:
 
 
-Photos & videos with EXIF data will be sorted into dated folders.
-Photos & videos without EXIF data will be copied to the 'Unsorted Media' folder.
-All other files will be copied to the 'Unsorted Files' folder.
+>Photos & videos with EXIF data will be sorted into dated folders.
+>
+>Photos & videos without EXIF data will be copied to the 'Unsorted Media' folder.
+>
+>All other files will be copied to the 'Unsorted Files' folder.
 
 
 Run the following:
@@ -26,9 +28,11 @@ Run the following:
 To perform the following function:
 
 
-Photos & videos with EXIF data will be sorted into month and year folders.
-Photos & videos without EXIF data will be copied to the 'Unsorted Media' folder.
-All other files will be copied to the 'Unsorted Files' folder.
+>Photos & videos with EXIF data will be sorted into month and year folders.
+>
+>Photos & videos without EXIF data will be copied to the 'Unsorted Media' folder.
+>
+>All other files will be copied to the 'Unsorted Files' folder.
 
 
 Run the following:
@@ -37,7 +41,11 @@ Run the following:
 `ruby transfer_wizard.rb month`
 
 
+Use the files located in the test_source and test_destination directories to see the capabilities of the program. One picture has EXIF data, two pictures do not, and the PDF demonstrates how other files are treated.
+
+
 NB: you will need to edit the variables '@source_dir' and '@destination_dir' in the file 'transfer_manager.rb' before running the program like this. These variables can be changed in the command line interface if you run the program without command line flags.
+
 
 
 

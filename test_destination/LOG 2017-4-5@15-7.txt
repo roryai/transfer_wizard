@@ -1,0 +1,32 @@
+SOURCE: Z:/Google Drive/Coding_encrypted/photo_transfer/test_source/
+DESTINATION: Z:/Google Drive/Coding_encrypted/photo_transfer/test_destination/
+Transferred at : 2017-04-05 15:07:16 +0100
+
+START
+
+DSC_0033.JPG                    transferred to: Z:/Google Drive/Coding_encrypted/photo_transfer/test_destination/2016/07-July
+
+END
+Files in source directory: 1
+Files transferred: 1
+FLAGS: Day or month: month, Sort status: sort
+
+START
+
+Rp2nW8i.jpg                     file exists in: Z:/Google Drive/Coding_encrypted/photo_transfer/test_destination/Unsorted Media
+potd-owl_3490388k.jpg           file exists in: Z:/Google Drive/Coding_encrypted/photo_transfer/test_destination/Unsorted Media
+
+END
+Files in source directory: 2
+Files transferred: 0
+FLAGS: Day or month: month, Sort status: unsorted_media
+
+START
+
+bookofruby.pdf                  file exists in: Z:/Google Drive/Coding_encrypted/photo_transfer/test_destination/Unsorted Files
+
+END
+Files in source directory: 1
+Files transferred: 0
+FLAGS: Day or month: month, Sort status: unsorted_files
+
