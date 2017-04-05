@@ -11,10 +11,29 @@ class Log
   end
 
   def create_log_file(target_dir)
-    log_name = create_log_name + @extension
+    log_name = unique_name_checker(target_dir)
     # writes each line in the log array to the log file
     File.open(target_dir + log_name, 'a') { |file| @log_text.each { |line| file.write(line + "\n") }}
     p "log created" + log_name
+  end
+
+  def unique_name_checker(target_dir)
+    log_name = create_log_name
+    FileUtils.cd(target_dir)
+    unique_name_creator(log_name)
+  end
+
+  def unique_name_creator(log_name)
+    if File.exist?(@prefix + log_name + @extension)
+      new_name = @prefix + log_name + "-" + @time.sec.to_s + "s" + @extension
+      if File.exist?(new_name)
+        return @prefix + log_name + "-" + @time.strftime("%Lms") + @extension
+      else
+        return new_name
+      end
+    else
+      return @prefix + log_name + @extension
+    end
   end
 
   def create_log_name
