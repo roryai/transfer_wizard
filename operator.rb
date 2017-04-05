@@ -40,9 +40,9 @@ class Operator
 
   def terminal_flag_processor
     if ARGV[0] == 'date'
-      @transfer.transfer_files_to_dirs(:day)
+      day_unsorted
     elsif ARGV[0] == 'month'
-      @transfer.transfer_files_to_dirs(:month)
+      month_unsorted
     else
       function_selector
     end
@@ -54,46 +54,52 @@ class Operator
     case input
       when 'q'
         set_source_directory
-        self.function_selector
+        function_selector
       when 'w'
         set_destination_directory
-        self.function_selector
+        function_selector
       when 'e'
         get_source_directory
-        self.function_selector
+        function_selector
       when 'r'
         get_destination_directory
-        self.function_selector
+        function_selector
       when 'd'
         log_header
         day_unsorted
         @transfer.log.create_log_file(@transfer.destination_dir)
+        function_selector
       when 'm'
         log_header
         month_unsorted
         @transfer.log.create_log_file(@transfer.destination_dir)
+        function_selector
       when 'dz'
         log_header
         day_media_sorted
         @transfer.log.create_log_file(@transfer.destination_dir)
+        function_selector
       when 'mz'
         log_header
         month_media_sorted
         @transfer.log.create_log_file(@transfer.destination_dir)
+        function_selector
       when 'dx'
         log_header
         day_all_sorted
         @transfer.log.create_log_file(@transfer.destination_dir)
+        function_selector
       when 'mx'
         log_header
         month_all_sorted
         @transfer.log.create_log_file(@transfer.destination_dir)
+        function_selector
       when 'del'
         delete_destination_contents
-        self.function_selector
+        function_selector
       when 'y'
         test_method
-        self.function_selector
+        function_selector
       when 'x'
         exit
       when 'quit'
@@ -101,7 +107,7 @@ class Operator
       else
         puts "Please enter a valid character"
         puts "Type 'x' or 'quit' and 'enter' to quit this program."
-        self.function_selector
+        function_selector
     end
   end
 

@@ -1,5 +1,46 @@
 ## A program that transfers files and organises them into folders by date or month.
 
+To run the program, navigate to the directory containing 'transfer_wizard.rb' and run the following command:
+
+
+`ruby transfer_wizard.rb`
+
+
+The program can be operated with command line flags, bypassing the need to use the menu.
+
+
+To perform the following function:
+
+
+Photos & videos with EXIF data will be sorted into dated folders.
+Photos & videos without EXIF data will be copied to the 'Unsorted Media' folder.
+All other files will be copied to the 'Unsorted Files' folder.
+
+
+Run the following:
+
+
+`ruby transfer_wizard.rb dated`
+
+
+To perform the following function:
+
+
+Photos & videos with EXIF data will be sorted into month and year folders.
+Photos & videos without EXIF data will be copied to the 'Unsorted Media' folder.
+All other files will be copied to the 'Unsorted Files' folder.
+
+
+Run the following:
+
+
+`ruby transfer_wizard.rb month`
+
+
+NB: you will need to edit the variables '@source_dir' and '@destination_dir' in the file 'transfer_manager.rb' before running the program like this. These variables can be changed in the command line interface if you run the program without command line flags.
+
+
+
 Originally designed to take photos from a camera and sort them into directories on a hard drive, the program now deals with all file types and can be used as a file system reorganisation tool.
 
 If you have one or more unorganised set of photos or files on a hard drive this program will organise them into directories the day or month in which they were created. It can then be used to transfer photos from your camera, so that all past and current photos can be organised in the same place.
@@ -52,13 +93,4 @@ A log is generated showing the information below:
 >FLAGS: Day or month: day, Sort status: sort
 
 
-photo_transfer.rb is the file that you run to start the program.
-
-
-operator.rb contains the Operator class, which controls the flow of actions.
-
-
-transfer_manager.rb contains the Transfer class, which handles transfers and instantiates all other classes and includes the FileMgr and DirMgr classes.
-
-
-The commit history from 7th February to 21st March disappeared when I copied my local files to another directory.
+NB: The commit history from 7th February to 21st March disappeared when I copied my local files to another directory.

@@ -26,7 +26,7 @@ class Log
     if File.exist?(@prefix + log_name + @extension)
       new_name = @prefix + log_name + "-" + @time.sec.to_s + "s" + @extension
       if File.exist?(new_name)
-        return @prefix + log_name + "-" + @time.nsec.to_s + @extension
+        return @prefix + log_name + "-" + @time.strftime("%Lms") + @extension
       else
         return new_name
       end
@@ -34,7 +34,6 @@ class Log
       return @prefix + log_name + @extension
     end
   end
-  # strftime("%Lms") removed from above and replaced with @time.nsec because Windows says 'uninitialised constant'
 
   def create_log_name
     @time.year.to_s + "-" + @time.month.to_s + "-" + @time.day.to_s + "@" + @time.hour.to_s + "-" + @time.min.to_s
