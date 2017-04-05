@@ -1,4 +1,4 @@
-## A program that transfers files and organises them into photos by date or month.
+## A program that transfers files and organises them into folders by date or month.
 
 Originally designed to take photos from my camera and sort them into directories on my hard drive, the program now deals with all file types and can be used as a file system reorganisation tool.
 

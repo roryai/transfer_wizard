@@ -8,8 +8,8 @@ class Transfer
   attr_accessor :source_dir, :destination_dir, :file_mgr, :dir_mgr, :log, :all_files_and_times, :files_with_exif, :unsorted_media, :unsorted_files
 
   def initialize
-    @source_dir = "/Users/rory/Documents/test_camera"
-    @destination_dir = "/Users/rory/Documents/tester/"
+    @source_dir = "C:/photo_transfer_test/win_test_source"
+    @destination_dir = "C:/photo_transfer_test/win_test_destination/"
     @file_mgr = FileMgr.new
     @dir_mgr = DirMgr.new
     @log = Log.new

@@ -4,7 +4,7 @@ class Operator
 
   def initialize
     @transfer = Transfer.new
-    @welcome_text = "Welcome to photo_transfer.
+    @welcome_text = "\n\nWelcome to photo_transfer.
 
     Type 'q' and 'enter' to SET the source directory.
     Type 'w' and 'enter' to SET the destination directory.

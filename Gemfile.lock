@@ -19,10 +19,11 @@ GEM
 
 PLATFORMS
   ruby
+  x64-mingw32
 
 DEPENDENCIES
   exifr
   rspec
 
 BUNDLED WITH
-   1.13.7
+   1.14.6
