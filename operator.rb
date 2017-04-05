@@ -132,7 +132,7 @@ class Operator
   def log_header
     @transfer.log.log_text << "SOURCE: " + @transfer.source_dir
     @transfer.log.log_text << "DESTINATION: " + @transfer.destination_dir
-    @transfer.log.log_text << "Transferred at :" + Time.new.to_s + "\n"
+    @transfer.log.log_text << "Transferred at : " + Time.new.to_s + "\n"
   end
 
   def day_unsorted
