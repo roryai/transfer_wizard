@@ -3,6 +3,10 @@ require 'exifr'
 
 class DirMgr
 
+  def initialize
+    @rjust = 13
+  end
+
   def make_directory(dir_to_make_within, dir_to_make)
     FileUtils.cd(dir_to_make_within)
     create_or_skip(dir_to_make)
@@ -11,21 +15,21 @@ class DirMgr
   def create_or_skip(dir_to_make)
     if !Dir.exist?(dir_to_make)
       FileUtils.mkdir(dir_to_make)
-      puts "Directory created: " + (" " * 10) + dir_to_make
+      puts "Directory created: " + (" " * @rjust) + dir_to_make
     end
   end
 
-  def create_dir_by_day_or_month(file_name_time_array, computer_dir, day_or_month, sort_status)
+  def create_dir_by_day_or_month(file_name_time_array, destination_dir, day_or_month, sort_status)
     file_name_time_array.each do |file_name, time|
       if sort_status == :unsorted_media
-        make_directory(computer_dir, "Unsorted Media")
+        make_directory(destination_dir, "Unsorted Media")
       elsif sort_status == :unsorted_files
-        make_directory(computer_dir, "Unsorted Files")
+        make_directory(destination_dir, "Unsorted Files")
       elsif day_or_month == :day
-        make_directory(computer_dir, folder_name_generator(time, day_or_month))
+        make_directory(destination_dir, folder_name_generator(time, day_or_month))
       elsif day_or_month == :month
-        make_directory(computer_dir, time.year.to_s)
-        make_directory(computer_dir + time.year.to_s, folder_name_generator(time, :month))
+        make_directory(destination_dir, time.year.to_s)
+        make_directory(destination_dir + time.year.to_s, folder_name_generator(time, :month))
       end
     end
   end

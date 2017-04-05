@@ -1,34 +1,48 @@
-## A program that transfers photos from a camera connected via USB.
+## A program that transfers files and organises them into photos by date or month.
+
+Originally designed to take photos from my camera and sort them into directories on my hard drive, the program now deals with all file types and can be used as a file system reorganisation tool.
+
+If you have one or more unorganised set of photos or files on your hard drive this program will organise it all for you. It can then be used to transfer photos from your camera, so that all your past and current photos can be organised in the same place.
 
 
+Photos and videos are sorted according to EXIF data, if it exists. If there is no EXIF data they are sorted by file creation time. All other file types are sorted by file creation time.
 
-Current features:
 
-Transfers photos into folders generated from EXIF data of photo by date or month + year taken.
+The program can be set to sort files into different folders: files with EXIF can be sorted into day or month directories, with other media going to an 'Unsorted Media' directory, and all other files going to an 'Unsorted Files' directory.
 
-Allows copy from and copy to directories to be set via terminal.
 
-Produces a log file giving details of all photos selected for transfer. Shows whether they are transferred or whether they already exist, like so:
+Alternatively, all photos & videos can be sorted into dated or month folders, with all other files going into the 'Unsorted Files' directory.
 
-> Directory already exists:    2008-2-5
+
+Lastly, all files can be sorted into dat or month folders.
+
+
+The program generates directory names according to the time stamp of a file.
+
+NB: on UNIX systems, file creation date is when the file was last copied or moved. On Windows, original file creation date is maintained when a file is copied. The program is therefore less useful for reorganising old repositories of files on UNIX systems that may have been moved or copied since their original creation date. The program works well for old sets of files on Windows systems, and for all new/uncopied files on Windows or UNIX systems.
+
+
+A log is generated showing the information below:
+
+>SOURCE: /Users/rory/Documents/test_camera
+DESTINATION: /Users/rory/Documents/tester/
+Transferred at :2017-04-05 11:39:48 +0100
 >
->Directory created:           2016-12-4
 >
->Directory already exists:    2016-12-4
+START
 >
->Directory already exists:    2016-12-29
 >
->IMG_0326.JPG                 file exists in: /Users/rory/Documents/tester/2008-2-5
+IMG_0326.JPG                    transferred to: /Users/rory/Documents/tester/2008-2-5
+photo1.JPG                      transferred to: /Users/rory/Documents/tester/2016-12-4
+photo2.JPG                      transferred to: /Users/rory/Documents/tester/2016-12-4
+photo4.JPG                      transferred to: /Users/rory/Documents/tester/2016-12-29
 >
->photo1.JPG                   transferred to: /Users/rory/Documents/tester/2016-12-4
 >
->photo2.JPG                   transferred to: /Users/rory/Documents/tester/2016-12-4
->
->photo4.JPG                   file exists in: /Users/rory/Documents/tester/2016-12-29
->
->Photos on camera: 4
->
->Photos transferred: 2
+END
+Files in source directory: 4
+Files transferred: 4
+FLAGS: Day or month: day, Sort status: sort
+
 
 photo_transfer.rb is the file that you run to start the program.
 
@@ -38,73 +52,5 @@ operator.rb contains the Operator class, which controls the flow of actions.
 
 transfer_manager.rb contains the Transfer class, which handles transfers and instantiates all other classes and includes the FileMgr and DirMgr modules.
 
-I am creating this to practice building software that interacts with my file system and had a real world application. Eventually it will replace the default Sony software that has hundreds of features that I don't use, and is missing a couple that I would like.
 
 The commit history from 7th February to 21st March disappeared when I copied my local files to another directory.
-
-### USER STORIES
-
-As a user
-
-So that I can backup my photos
-
-I want to transfer all photos on my camera to my hard drive
-
-
-As a user
-
-So that I can find my photos easily
-
-I want to transfer photos into folders that are named for the date the photo was taken
-
-
-
-As a user
-
-So that I don't duplicate photos
-
-I only want to transfer photos that have not already been transferred
-
-
-
-As a user
-
-For ease of use
-
-I want to be able to run the program from my terminal
-
-
-
-
-
-As a user
-
-For more control over my program
-
-I want to be able to be able to control the following via command line flags:
-
-
-
-Transfer all
-
-Transfer new
-
-Transfer with delete
-
-Destination directory
-
-
-
-As a user
-
-So that I can make space available on my camera
-
-I want to delete photos from my SD card once they have been transferred
-
-
-
-As a user
-
-So that I don't accidentally lose my photos
-
-I want to confirm that photos have been transferred before I delete them

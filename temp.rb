@@ -29,7 +29,7 @@ begin
           # if file_name is a directory
         rescue Errno::EISDIR
           p "eisdir- it's a directory error"
-          FileUtils.cd(camera_dir + "/" + file_name) do
+          FileUtils.cd(source_dir + "/" + file_name) do
             get_name_time_array(FileUtils.pwd)
           end
         rescue Errno::ENOENT

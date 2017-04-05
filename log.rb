@@ -14,7 +14,6 @@ class Log
     log_name = unique_name_checker(target_dir)
     # writes each line in the log array to the log file
     File.open(target_dir + log_name, 'a') { |file| @log_text.each { |line| file.write(line + "\n") }}
-    p "log created" + log_name
   end
 
   def unique_name_checker(target_dir)
@@ -51,11 +50,11 @@ class Log
   end
 
   def to_be_transferred_counter(file_name_time_array)
-    "Photos in source directory: " + file_name_time_array.length.to_s
+    "Files in source directory: " + file_name_time_array.length.to_s
   end
 
   def transferred_counter
-    "Photos transferred: " + @transferred_count.to_s
+    "Files transferred: " + @transferred_count.to_s
   end
 
 end

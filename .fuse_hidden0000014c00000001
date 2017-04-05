@@ -38,9 +38,9 @@ class Operator
 
   def terminal_flag_processor
     if ARGV[0] == 'date'
-      @transfer.transfer_photos_to_directories(:day)
+      @transfer.transfer_files_to_dirs(:day)
     elsif ARGV[0] == 'month'
-      @transfer.transfer_photos_to_directories(:month)
+      @transfer.transfer_files_to_dirs(:month)
     else
       function_selector
     end
@@ -65,19 +65,19 @@ class Operator
       when 'd'
         log_header
         day_unsorted
-        @transfer.log.create_log_file(@transfer.computer_dir)
+        @transfer.log.create_log_file(@transfer.destination_dir)
       when 'm'
         log_header
         month_unsorted
-        @transfer.log.create_log_file(@transfer.computer_dir)
+        @transfer.log.create_log_file(@transfer.destination_dir)
       when 'dx'
         log_header
         day_all_sorted
-        @transfer.log.create_log_file(@transfer.computer_dir)
+        @transfer.log.create_log_file(@transfer.destination_dir)
       when 'mx'
         log_header
         month_all_sorted
-        @transfer.log.create_log_file(@transfer.computer_dir)
+        @transfer.log.create_log_file(@transfer.destination_dir)
       when 'del'
         delete_destination_contents
         self.function_selector
@@ -98,59 +98,59 @@ class Operator
   def set_source_directory
     puts "Type the directory in the following format, then press enter:
     /Users/rory/Documents/test_camera/"
-    @transfer.camera_dir = gets.chomp
+    @transfer.source_dir = gets.chomp
   end
 
   def set_destination_directory
     puts "Type the directory in the following format, then press enter:
     /Users/rory/Documents/tester/"
-    @transfer.computer_dir = gets.chomp
+    @transfer.destination_dir = gets.chomp
   end
 
   def get_source_directory
-    if @transfer.camera_dir == nil
+    if @transfer.source_dir == nil
       puts "\n" + "source directory set to default: /Users/rory/Documents/test_camera/\n\n"
     else
-      puts "\n" + "source directory: " + @transfer.camera_dir + "\n\n"
+      puts "\n" + "source directory: " + @transfer.source_dir + "\n\n"
     end
   end
 
   def get_destination_directory
-    if @transfer.computer_dir == nil
+    if @transfer.destination_dir == nil
       puts "\n" + "Set to default: /Users/rory/Documents/tester/\n\n"
     else
-      puts "\n" + "Computer directory: " + @transfer.computer_dir + "\n\n"
+      puts "\n" + "Computer directory: " + @transfer.destination_dir + "\n\n"
     end
   end
 
   def log_header
-    @transfer.log.log_text << "SOURCE: " + @transfer.camera_dir
-    @transfer.log.log_text << "DESTINATION: " + @transfer.computer_dir
+    @transfer.log.log_text << "SOURCE: " + @transfer.source_dir
+    @transfer.log.log_text << "DESTINATION: " + @transfer.destination_dir
     @transfer.log.log_text << "Transferred at :" + Time.new.to_s + "\n"
   end
 
   def day_unsorted
-    @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.files_with_exif, :day, :sort)
-    @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.unsorted_media, :day, :unsorted_media)
-    @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.unsorted_files, :day, :unsorted_files)
+    @transfer.transfer_files_to_dirs(@transfer.source_dir, @transfer.destination_dir, @transfer.files_with_exif, :day, :sort)
+    @transfer.transfer_files_to_dirs(@transfer.source_dir, @transfer.destination_dir, @transfer.unsorted_media, :day, :unsorted_media)
+    @transfer.transfer_files_to_dirs(@transfer.source_dir, @transfer.destination_dir, @transfer.unsorted_files, :day, :unsorted_files)
   end
 
   def month_unsorted
-    @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.files_with_exif, :month, :sort)
-    @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.unsorted_media, :month, :unsorted_media)
-    @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.unsorted_files, :month, :unsorted_files)
+    @transfer.transfer_files_to_dirs(@transfer.source_dir, @transfer.destination_dir, @transfer.files_with_exif, :month, :sort)
+    @transfer.transfer_files_to_dirs(@transfer.source_dir, @transfer.destination_dir, @transfer.unsorted_media, :month, :unsorted_media)
+    @transfer.transfer_files_to_dirs(@transfer.source_dir, @transfer.destination_dir, @transfer.unsorted_files, :month, :unsorted_files)
   end
 
   def day_all_sorted
-    @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.files_with_exif, :day, :sort)
-    @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.unsorted_media, :day, :sort)
-    @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.unsorted_files, :day, :sort)
+    @transfer.transfer_files_to_dirs(@transfer.source_dir, @transfer.destination_dir, @transfer.files_with_exif, :day, :sort)
+    @transfer.transfer_files_to_dirs(@transfer.source_dir, @transfer.destination_dir, @transfer.unsorted_media, :day, :sort)
+    @transfer.transfer_files_to_dirs(@transfer.source_dir, @transfer.destination_dir, @transfer.unsorted_files, :day, :sort)
   end
 
   def month_all_sorted
-    @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.files_with_exif, :month, :sort)
-    @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.unsorted_media, :month, :sort)
-    @transfer.transfer_photos_to_directories(@transfer.camera_dir, @transfer.computer_dir, @transfer.unsorted_files, :month, :sort)
+    @transfer.transfer_files_to_dirs(@transfer.source_dir, @transfer.destination_dir, @transfer.files_with_exif, :month, :sort)
+    @transfer.transfer_files_to_dirs(@transfer.source_dir, @transfer.destination_dir, @transfer.unsorted_media, :month, :sort)
+    @transfer.transfer_files_to_dirs(@transfer.source_dir, @transfer.destination_dir, @transfer.unsorted_files, :month, :sort)
   end
 
   def delete_destination_contents
