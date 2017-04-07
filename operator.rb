@@ -22,13 +22,19 @@ class Operator
       Photos & videos without EXIF data will be copied to the 'Unsorted Media' folder.
       All other files will be copied to the 'Unsorted Files' folder.
 
+    Type 'dz' and 'enter':
+      Photos & videos with & without EXIF data will be sorted into dated folders.
+      All other files will be copied to the 'Unsorted Files' folder.
+
+    Type 'mz' and 'enter':
+      Photos & videos with & without EXIF data will be sorted into month and year folders.
+      All other files will be copied to the 'Unsorted Files' folder.
+
     Type 'dx' and 'enter':
-      Photos & videos with EXIF data will be sorted into dated folders.
-      All other files will be sorted into dated folders based on file creation date*.
+      All files will be sorted into dated folders based on EXIF data or file creation date*.
 
     Type 'mx' and 'enter':
-      Photos & videos with EXIF data will be sorted into month and year folders.
-      All other files will be sorted into month and year folders based on file creation date*.
+      All files will be sorted into month and year folders based on EXIF data or file creation date*.
 
     Type 'del' and 'enter' to delete all files in 'tester' directory.
 
@@ -67,33 +73,27 @@ class Operator
       when 'd'
         log_header
         day_unsorted
-        @transfer.log.create_log_file(@transfer.destination_dir)
-        function_selector
+        create_log_and_restart_function_selector
       when 'm'
         log_header
         month_unsorted
-        @transfer.log.create_log_file(@transfer.destination_dir)
-        function_selector
+        create_log_and_restart_function_selector
       when 'dz'
         log_header
         day_media_sorted
-        @transfer.log.create_log_file(@transfer.destination_dir)
-        function_selector
+        create_log_and_restart_function_selector
       when 'mz'
         log_header
         month_media_sorted
-        @transfer.log.create_log_file(@transfer.destination_dir)
-        function_selector
+        create_log_and_restart_function_selector
       when 'dx'
         log_header
         day_all_sorted
-        @transfer.log.create_log_file(@transfer.destination_dir)
-        function_selector
+        create_log_and_restart_function_selector
       when 'mx'
         log_header
         month_all_sorted
-        @transfer.log.create_log_file(@transfer.destination_dir)
-        function_selector
+        create_log_and_restart_function_selector
       when 'del'
         delete_destination_contents
         function_selector
@@ -185,15 +185,32 @@ class Operator
     @transfer.dir_mgr.delete_all_in_folder(dir) if input == 'y'
   end
 
+  def create_log_and_restart_function_selector
+    puts "Total files transferred: " + @transfer.log.total_count.to_s
+    @transfer.log.log_text << "Total files transferred: " + @transfer.log.total_count.to_s
+    @transfer.log.create_log_file(@transfer.destination_dir)
+    @transfer.log.log_text = []
+    @transfer.log.total_count = 0
+    function_selector
+  end
+
   def test_method
-    puts "files_with_exif BELOW"
+    puts "######################################## files_with_exif BELOW #######################################"
     puts @transfer.files_with_exif
     puts
-    puts "unsorted_media BELOW"
+    puts "######################################## unsorted_media BELOW ########################################"
     puts @transfer.unsorted_media
     puts
-    puts "unsorted_files BELOW"
+    puts "######################################## unsorted_files BELOW ########################################"
     puts @transfer.unsorted_files
+    puts
+    puts "Amount of files in files_with_exif: " + @transfer.files_with_exif.length.to_s
+    puts
+    puts "Amount of files in unsorted_media: " + @transfer.unsorted_media.length.to_s
+    puts
+    puts "Amount of files in unsorted_files: " + @transfer.unsorted_files.length.to_s
+    puts
+    puts "Total amount of files: " + (@transfer.files_with_exif.length + @transfer.unsorted_media.length + @transfer.unsorted_files.length).to_s
   end
 
 end

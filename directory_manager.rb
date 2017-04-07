@@ -53,7 +53,7 @@ class DirMgr
   end
 
   def delete_all_in_folder(dir)
-    p "Deleting all in " + dir
+    puts "Deleting all in " + dir
     FileUtils.cd(dir)
     file_name_array = Dir.glob("*")
     file_name_array.each do |file|

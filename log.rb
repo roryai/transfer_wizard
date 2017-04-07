@@ -1,12 +1,13 @@
 class Log
 
-  attr_accessor :log_text, :transferred_count
+  attr_accessor :log_text, :transferred_count, :total_count
 
   def initialize
     @prefix = "LOG "
     @extension = ".txt"
     @log_text = []
     @transferred_count = 0
+    @total_count = 0
     @time = Time.new
   end
 
@@ -46,6 +47,7 @@ class Log
     @log_text << to_be_transferred_counter(files)
     @log_text << transferred_counter
     @log_text << "FLAGS: " + "Day or month: " + day_or_month.to_s + ", " + "Sort status: " + sort_status.to_s + "\n"
+    @total_count += @transferred_count
     @transferred_count = 0
   end
 
