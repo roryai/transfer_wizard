@@ -1,5 +1,5 @@
 To do:
-How to deal with / and \ in file path on windows and mac? RUBY_PLATFORM
+How to enter hidden directories?
 Catch chdir warning
 Update README
 
@@ -41,3 +41,5 @@ make month folders
 end
 
 current setup assumes all folders that photos are to be copied into exist in destination_dir, not one level down within directories within those directories
+
+How to deal with / and \ in file path on windows and mac? RUBY_PLATFORM

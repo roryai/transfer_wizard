@@ -8,9 +8,10 @@ class Transfer
   attr_accessor :source_dir, :destination_dir, :file_mgr, :dir_mgr, :log, :all_files_and_times, :files_with_exif, :unsorted_media, :unsorted_files
 
   def initialize
-    @source_dir = "/photo_transfer/test_source/"
+    @source_dir = ""
     # @destination_dir must have forward slash on the end
-    @destination_dir = "/photo_transfer/test_destination/"
+    @destination_dir = ""
+    # "C:/organised_photos/"
     @file_mgr = FileMgr.new
     @dir_mgr = DirMgr.new
     @log = Log.new
@@ -48,11 +49,30 @@ class Transfer
     end
   end
 
-  def single_file_transfer(copy_from, file_name, target_dir)
-    if File.exist?(file_name)
-      file_exists(file_name, target_dir)
+  # refactor
+  def single_file_transfer(full_file_path, file_name, target_dir)
+    if !File.exist?(file_name)
+      transfer_file(full_file_path, file_name, target_dir)
+    elsif File.exist?(file_name)
+      if same_size_checker(full_file_path, file_name, target_dir) == true
+        file_exists(file_name, target_dir)
+      else
+        file_name = "(name_conflict)" + file_name
+        transfer_file(full_file_path, file_name, target_dir)
+      end
+    end
+  end
+
+  # refactor
+  def same_size_checker(full_file_path, file_name, target_dir)
+    file_to_be_copied = full_file_path
+    file_in_destination = target_dir + "/" + file_name
+    file_to_be_copied_size = File.size(file_to_be_copied).abs
+    file_in_destination_size = File.size(file_in_destination).abs
+    if (file_to_be_copied_size - file_in_destination_size) > (file_in_destination_size * 0.005)
+      return false
     else
-      transfer_file(copy_from, file_name, target_dir)
+      return true
     end
   end
 
@@ -62,16 +82,16 @@ class Transfer
     puts file_name + already_exists + target_dir
   end
 
-  def transfer_file(copy_from, file_name, target_dir)
+  def transfer_file(full_file_path, file_name, target_dir)
     transferred_to = " transferred to: ".rjust(@rjust-file_name.length)
-    copy_file(copy_from, target_dir, file_name, transferred_to)
+    copy_file(full_file_path, target_dir, file_name, transferred_to)
     @log.log_text << file_name + transferred_to + target_dir
     @log.transferred_count += 1
   end
 
-  def copy_file(copy_from, target_dir, file_name, transferred_to)
+  def copy_file(full_file_path, target_dir, file_name, transferred_to)
     copy_to = target_dir + "/" + file_name
-    FileUtils.copy_file(copy_from, copy_to, preserve = false, dereference = true)
+    FileUtils.copy_file(full_file_path, copy_to, preserve = false, dereference = true)
     puts file_name + transferred_to + target_dir
   end
 end
