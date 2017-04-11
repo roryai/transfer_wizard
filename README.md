@@ -103,3 +103,10 @@ A log is generated showing the information below:
 
 
 NB: The commit history from 7th February to 21st March disappeared when I copied my local files to another directory.
+
+
+### Improvements
+
+Currently lots of information about files is passed down a chain of methods as parameters. I'd like to put as much of this data in the file information array at creation time and have the methods access it as it is passed to them, to the degree to which this would improve on the current situation.
+
+Add a flag / symbol to the @transfer.transfer_files_to_dirs methods in the operator class with info on sorting type, so that I don't have to call the method 3 times. This will also result in the log files being n more logical places: currently the calls for log output and input are spread about the codebase.
