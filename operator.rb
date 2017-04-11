@@ -186,7 +186,9 @@ class Operator
   end
 
   def create_log_and_restart_function_selector
+    puts "Total files in arrays: " + (@transfer.files_with_exif.length+ @transfer.unsorted_media.length+ @transfer.unsorted_files.length).to_s
     puts "Total files transferred: " + @transfer.log.total_count.to_s
+    @transfer.log.log_text << "Total files in arrays: " + (@transfer.files_with_exif.length+ @transfer.unsorted_media.length+ @transfer.unsorted_files.length).to_s
     @transfer.log.log_text << "Total files transferred: " + @transfer.log.total_count.to_s
     @transfer.log.create_log_file(@transfer.destination_dir)
     @transfer.log.log_text = []

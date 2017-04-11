@@ -8,9 +8,9 @@ class Transfer
   attr_accessor :source_dir, :destination_dir, :file_mgr, :dir_mgr, :log, :all_files_and_times, :files_with_exif, :unsorted_media, :unsorted_files
 
   def initialize
-    @source_dir = ""
+    @source_dir = "C:/organised_photos/test_source"
     # @destination_dir must have forward slash on the end
-    @destination_dir = ""
+    @destination_dir = "C:/organised_photos/test_dest/"
     # "C:/organised_photos/"
     @file_mgr = FileMgr.new
     @dir_mgr = DirMgr.new
@@ -55,8 +55,10 @@ class Transfer
       transfer_file(full_file_path, file_name, target_dir)
     elsif File.exist?(file_name)
       if same_size_checker(full_file_path, file_name, target_dir) == true
+      	p "same size checker"
         file_exists(file_name, target_dir)
       else
+      	p "name conflict method"
         file_name = "(name_conflict)" + file_name
         transfer_file(full_file_path, file_name, target_dir)
       end
@@ -69,7 +71,13 @@ class Transfer
     file_in_destination = target_dir + "/" + file_name
     file_to_be_copied_size = File.size(file_to_be_copied).abs
     file_in_destination_size = File.size(file_in_destination).abs
-    if (file_to_be_copied_size - file_in_destination_size) > (file_in_destination_size * 0.005)
+    p "file_to_be_copied_size + file_in_destination_size" + (file_to_be_copied_size + file_in_destination_size).to_s
+    p "file_to_be_copied_size" + file_to_be_copied_size.to_s
+    p "file_in_destination_size" + file_in_destination_size.to_s
+    p "(((file_to_be_copied_size + file_in_destination_size) /2 ) - file_in_destination_size)" + ((((file_to_be_copied_size + file_in_destination_size) /2 ) - file_in_destination_size)).to_s
+    p "(((file_to_be_copied_size + file_in_destination_size) /2 ) - file_in_destination_size) < (file_in_destination_size * 0.0005)" + ((((file_to_be_copied_size + file_in_destination_size) /2 ) - file_in_destination_size) > (file_in_destination_size * 0.0005)).to_s
+    if the average size of the two files, minus the size of the dest file, is less than x% of the dest file, return false (run name conflict method), otherwise don't copy file and say 'file exists' 
+    if (((file_to_be_copied_size + file_in_destination_size) /2 ) - file_in_destination_size) < (file_in_destination_size * 0.0005)
       return false
     else
       return true
