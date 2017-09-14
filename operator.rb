@@ -166,15 +166,11 @@ class Operator
   end
 
   def day_all_sorted
-    @transfer.transfer_files_to_dirs(@transfer.files_with_exif, :day, :sort)
-    @transfer.transfer_files_to_dirs(@transfer.unsorted_media, :day, :sort)
-    @transfer.transfer_files_to_dirs(@transfer.unsorted_files, :day, :sort)
+    @transfer.transfer_files_to_dirs(@transfer.all_files_and_times.flatten!(1), :day, :sort)
   end
 
   def month_all_sorted
-    @transfer.transfer_files_to_dirs(@transfer.files_with_exif, :month, :sort)
-    @transfer.transfer_files_to_dirs(@transfer.unsorted_media, :month, :sort)
-    @transfer.transfer_files_to_dirs(@transfer.unsorted_files, :month, :sort)
+    @transfer.transfer_files_to_dirs(@transfer.all_files_and_times.flatten!(1), :month, :sort)
   end
 
   def delete_destination_contents
