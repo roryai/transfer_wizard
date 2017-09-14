@@ -142,43 +142,43 @@ class Operator
   end
 
   def day_unsorted
-    @transfer.transfer_files_to_dirs(@transfer.source_dir, @transfer.destination_dir, @transfer.files_with_exif, :day, :sort)
-    @transfer.transfer_files_to_dirs(@transfer.source_dir, @transfer.destination_dir, @transfer.unsorted_media, :day, :unsorted_media)
-    @transfer.transfer_files_to_dirs(@transfer.source_dir, @transfer.destination_dir, @transfer.unsorted_files, :day, :unsorted_files)
+    @transfer.transfer_files_to_dirs(@transfer.files_with_exif, :day, :sort)
+    @transfer.transfer_files_to_dirs(@transfer.unsorted_media, :day, :unsorted_media)
+    @transfer.transfer_files_to_dirs(@transfer.unsorted_files, :day, :unsorted_files)
   end
 
   def month_unsorted
-    @transfer.transfer_files_to_dirs(@transfer.source_dir, @transfer.destination_dir, @transfer.files_with_exif, :month, :sort)
-    @transfer.transfer_files_to_dirs(@transfer.source_dir, @transfer.destination_dir, @transfer.unsorted_media, :month, :unsorted_media)
-    @transfer.transfer_files_to_dirs(@transfer.source_dir, @transfer.destination_dir, @transfer.unsorted_files, :month, :unsorted_files)
+    @transfer.transfer_files_to_dirs(@transfer.files_with_exif, :month, :sort)
+    @transfer.transfer_files_to_dirs(@transfer.unsorted_media, :month, :unsorted_media)
+    @transfer.transfer_files_to_dirs(@transfer.unsorted_files, :month, :unsorted_files)
   end
 
   def day_media_sorted
-    @transfer.transfer_files_to_dirs(@transfer.source_dir, @transfer.destination_dir, @transfer.files_with_exif, :day, :sort)
-    @transfer.transfer_files_to_dirs(@transfer.source_dir, @transfer.destination_dir, @transfer.unsorted_media, :day, :sort)
-    @transfer.transfer_files_to_dirs(@transfer.source_dir, @transfer.destination_dir, @transfer.unsorted_files, :day, :unsorted_files)
+    @transfer.transfer_files_to_dirs(@transfer.files_with_exif, :day, :sort)
+    @transfer.transfer_files_to_dirs(@transfer.unsorted_media, :day, :sort)
+    @transfer.transfer_files_to_dirs(@transfer.unsorted_files, :day, :unsorted_files)
   end
 
   def month_media_sorted
-    @transfer.transfer_files_to_dirs(@transfer.source_dir, @transfer.destination_dir, @transfer.files_with_exif, :month, :sort)
-    @transfer.transfer_files_to_dirs(@transfer.source_dir, @transfer.destination_dir, @transfer.unsorted_media, :month, :sort)
-    @transfer.transfer_files_to_dirs(@transfer.source_dir, @transfer.destination_dir, @transfer.unsorted_files, :month, :unsorted_files)
+    @transfer.transfer_files_to_dirs(@transfer.files_with_exif, :month, :sort)
+    @transfer.transfer_files_to_dirs(@transfer.unsorted_media, :month, :sort)
+    @transfer.transfer_files_to_dirs(@transfer.unsorted_files, :month, :unsorted_files)
   end
 
   def day_all_sorted
-    @transfer.transfer_files_to_dirs(@transfer.source_dir, @transfer.destination_dir, @transfer.files_with_exif, :day, :sort)
-    @transfer.transfer_files_to_dirs(@transfer.source_dir, @transfer.destination_dir, @transfer.unsorted_media, :day, :sort)
-    @transfer.transfer_files_to_dirs(@transfer.source_dir, @transfer.destination_dir, @transfer.unsorted_files, :day, :sort)
+    @transfer.transfer_files_to_dirs(@transfer.files_with_exif, :day, :sort)
+    @transfer.transfer_files_to_dirs(@transfer.unsorted_media, :day, :sort)
+    @transfer.transfer_files_to_dirs(@transfer.unsorted_files, :day, :sort)
   end
 
   def month_all_sorted
-    @transfer.transfer_files_to_dirs(@transfer.source_dir, @transfer.destination_dir, @transfer.files_with_exif, :month, :sort)
-    @transfer.transfer_files_to_dirs(@transfer.source_dir, @transfer.destination_dir, @transfer.unsorted_media, :month, :sort)
-    @transfer.transfer_files_to_dirs(@transfer.source_dir, @transfer.destination_dir, @transfer.unsorted_files, :month, :sort)
+    @transfer.transfer_files_to_dirs(@transfer.files_with_exif, :month, :sort)
+    @transfer.transfer_files_to_dirs(@transfer.unsorted_media, :month, :sort)
+    @transfer.transfer_files_to_dirs(@transfer.unsorted_files, :month, :sort)
   end
 
   def delete_destination_contents
-    dir = "/Users/rory/Documents/tester/"
+    dir = "/Users/roryaitchison/projects/transfer_wizard/test_destination/"
     puts "Are you sure you want to delete all files in " + dir + "?"
     puts "Type 'y' to proceed"
     input = gets.chomp

@@ -8,10 +8,9 @@ class Transfer
   attr_accessor :source_dir, :destination_dir, :file_mgr, :dir_mgr, :log, :all_files_and_times, :files_with_exif, :unsorted_media, :unsorted_files
 
   def initialize
-    @source_dir = "C:/organised_photos/hard drive to sort"
+    @source_dir = "/Users/roryaitchison/projects/transfer_wizard/test_source"
     # @destination_dir must have forward slash on the end
-    @destination_dir = "C:/organised_photos/"
-    # "C:/organised_photos/"
+    @destination_dir = "/Users/roryaitchison/projects/transfer_wizard/test_destination/"
     @file_mgr = FileMgr.new
     @dir_mgr = DirMgr.new
     @log = Log.new
@@ -22,7 +21,7 @@ class Transfer
     @rjust = 48
   end
 
-  def transfer_files_to_dirs(source_dir, destination_dir, files, day_or_month, sort_status)
+  def transfer_files_to_dirs(source_dir=@source_dir, destination_dir=@destination_dir, files, day_or_month, sort_status)
     @dir_mgr.create_dir_by_day_or_month(files, destination_dir, day_or_month, sort_status)
     @log.log_text << "START\n"
     multiple_file_transfer(source_dir, destination_dir, files, day_or_month, sort_status)
