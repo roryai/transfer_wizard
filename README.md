@@ -1,5 +1,7 @@
 ## A program that transfers files and organises them into folders by date or month.
 
+This program was last updated in September 2017. To see the modern version (implemeneted in Python) go [here](https://github.com/roryai/transfer_wizard_redux).
+
 To run the program, navigate to the directory containing 'transfer_wizard.rb' and run the following command:
 
 
