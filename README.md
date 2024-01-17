@@ -1,4 +1,5 @@
-**NB: This program was last updated in September 2017. To see the modern version (implemeneted in Python) go [here](https://github.com/roryai/transfer_wizard_redux).**
+**NB: This program was last updated in September 2017. To see the modern version (implemented in Python) go [here](https://github.com/roryai/transfer_wizard_redux).**
+<br/><br/> 
 <br/><br/> 
 ## A program that transfers files and organises them into folders by date or month.
 
